@@ -1,0 +1,48 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  image: string;
+  url: string;
+}
+
+const {
+  name,
+  description,
+  image,
+  url,
+} = Astro.props;
+---
+
+<article class="card-service">
+
+  <div class="card-image-wrapper">
+
+    <img
+      src={image}
+      alt={name}
+      loading="lazy"
+    />
+
+  </div>
+
+  <div class="card-content">
+
+    <h3>
+      {name}
+    </h3>
+
+    <p>
+      {description}
+    </p>
+
+  </div>
+
+  <a
+    href={url}
+    class="btn-card"
+  >
+    Lihat Layanan
+  </a>
+
+</article>

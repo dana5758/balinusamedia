@@ -1,0 +1,106 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import ProductFilter from "../../components/ProductFilter.astro";
+import StoreSearch from "../../components/StoreSearch.astro";
+import ProductCard from "../../components/ProductCard.astro";
+import { getProducts } from "../../lib/store";
+
+const products = await getProducts();
+---
+
+<MainLayout
+    title="Toko Bali Nusa Media | Internet, WiFi & CCTV"
+    description="Toko Bali Nusa Media menyediakan perangkat Internet & WiFi, CCTV Security, dan peralatan pendukung."
+>
+
+    <main class="store-page">
+
+        <!-- HERO TOKO -->
+
+        <section class="store-hero">
+
+            <div class="hub-container">
+
+                <p class="eyebrow">
+                    TOKO BALI NUSA MEDIA
+                </p>
+
+                <h1>
+                    Perangkat Internet, WiFi &
+                    CCTV untuk Rumah dan Bisnis
+                </h1>
+
+                <p>
+                    Pilih perangkat yang Anda butuhkan
+                    dan pesan melalui Shopee atau
+                    WhatsApp.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- KATALOG -->
+
+        <section class="store-section">
+
+            <div class="hub-container">
+
+                <StoreSearch />
+
+                <ProductFilter />
+
+                {
+                    products.length > 0 ? (
+
+                        <div class="product-grid store-product-grid">
+
+                            {products.map((product) => (
+
+                                <div
+                                    data-product-card
+                                    data-category={product.kategori}
+                                    data-product-name={product.nama}
+                                    data-product-brand={product.brand}
+                                >
+                                    <ProductCard
+                                        product={product}
+                                    />
+                                </div>
+
+                            ))}
+
+                        </div>
+
+                    ) : (
+
+                        <div class="store-empty">
+
+                            <h2>
+                                Katalog belum tersedia
+                            </h2>
+
+                            <p>
+                                Belum ada produk aktif
+                                yang dapat ditampilkan.
+                            </p>
+
+                        </div>
+
+                    )
+                }
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script
+        src="/assets/js/catalog-toko.js"
+        is:inline
+    ></script>
+
+</MainLayout>

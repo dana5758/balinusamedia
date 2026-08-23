@@ -1,0 +1,40 @@
+---
+import { company } from "../data/company";
+---
+
+<div class="social-links">
+
+  {company.social.instagram && (
+    <a
+      href={company.social.instagram}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Instagram"
+    >
+      Instagram
+    </a>
+  )}
+
+  {company.social.facebook && (
+    <a
+      href={company.social.facebook}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Facebook"
+    >
+      Facebook
+    </a>
+  )}
+
+  {company.social.youtube && (
+    <a
+      href={company.social.youtube}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="YouTube"
+    >
+      YouTube
+    </a>
+  )}
+
+</div>

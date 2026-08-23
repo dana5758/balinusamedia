@@ -1,0 +1,225 @@
+---
+import type { Product } from "../types/product";
+
+interface Props {
+    product: Product;
+}
+
+const { product } = Astro.props;
+
+const formatPrice = (value: number) =>
+    new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        maximumFractionDigits: 0,
+    }).format(value);
+
+
+/* =========================================================
+   HARGA CORET
+   ========================================================= */
+
+const hasDiscount =
+    typeof product.harga_coret === "number" &&
+    product.harga_coret > 0 &&
+    product.harga_coret > product.harga;
+
+
+/* =========================================================
+   GAMBAR
+   ========================================================= */
+
+const imageSrc =
+    product.gambar &&
+    product.gambar.trim() !== ""
+        ? product.gambar
+        : "/assets/img/icon.png";
+
+
+/* =========================================================
+   WHATSAPP
+   ========================================================= */
+
+const whatsappMessage = encodeURIComponent(
+    `Halo Bali Nusa Media,
+
+Saya ingin membeli / menanyakan produk:
+
+Produk: ${product.nama}
+Brand: ${product.brand}
+Harga: ${formatPrice(product.harga)}
+
+Mohon informasi ketersediaannya.
+
+Terima kasih.`
+);
+
+const whatsappUrl =
+    `https://wa.me/6285168981959?text=${whatsappMessage}`;
+
+
+/* =========================================================
+   SHOPEE
+   ========================================================= */
+
+const shopeeEnabled =
+    product.shopee === true;
+
+
+/*
+ * Bila URL produk tersedia gunakan URL produk.
+ * Bila belum ada, jangan membuat URL palsu.
+ */
+
+const shopeeUrl =
+    product.shopee_url &&
+    product.shopee_url.trim() !== ""
+        ? product.shopee_url.trim()
+        : "https://shopee.co.id/";
+---
+
+
+<article
+    class="product-card"
+    data-product-id={product.id}
+>
+
+
+    <!-- =====================================================
+         GAMBAR
+    ====================================================== -->
+
+    <div class="product-image">
+
+        <img
+            src={imageSrc}
+            alt={product.nama}
+            loading="lazy"
+            decoding="async"
+            referrerpolicy="no-referrer"
+        />
+
+        {product.unggulan && (
+            <span class="product-badge">
+                Unggulan
+            </span>
+        )}
+
+    </div>
+
+
+    <!-- =====================================================
+         CONTENT
+    ====================================================== -->
+
+    <div class="product-content">
+
+
+        {product.brand && (
+            <span class="product-category">
+                {product.brand}
+            </span>
+        )}
+
+
+        <h3>
+            {product.nama}
+        </h3>
+
+
+        {product.deskripsi && (
+            <p class="product-description">
+                {product.deskripsi}
+            </p>
+        )}
+
+
+        <!-- =================================================
+             HARGA
+        ================================================== -->
+
+        <div class="product-price">
+
+            <strong>
+                {formatPrice(product.harga)}
+            </strong>
+
+            {hasDiscount && (
+                <del>
+                    {formatPrice(product.harga_coret!)}
+                </del>
+            )}
+
+        </div>
+
+
+        <!-- =================================================
+             STOK
+        ================================================== -->
+
+        {product.stok > 0 ? (
+
+            <span class="product-stock available">
+                Stok tersedia
+            </span>
+
+        ) : (
+
+            <span class="product-stock empty">
+                Stok habis
+            </span>
+
+        )}
+
+
+        <!-- =================================================
+             ORDER
+        ================================================== -->
+
+        {product.stok > 0 && (
+
+            <div class="product-order-buttons">
+
+
+                <!-- ================================
+                     SHOPEE
+                ================================= -->
+
+                {shopeeEnabled && (
+
+                    <a
+                        href={shopeeUrl}
+                        class="btn-shopee"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        🛒 Shopee
+                    </a>
+
+                )}
+
+
+                <!-- ================================
+                     WHATSAPP
+                ================================= -->
+
+                {product.whatsapp && (
+
+                    <a
+                        href={whatsappUrl}
+                        class="btn-whatsapp"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        💬 WhatsApp
+                    </a>
+
+                )}
+
+            </div>
+
+        )}
+
+    </div>
+
+</article>

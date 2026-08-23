@@ -1,0 +1,71 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const {
+    title = "Bali Nusa Media | Internet, CCTV & Website Karangasem",
+    description = "Bali Nusa Media menyediakan layanan Internet, CCTV, dan Website untuk rumah, villa, UMKM, dan bisnis di Karangasem, Bali.",
+} = Astro.props;
+
+const canonicalUrl =
+    new URL(Astro.url.pathname, Astro.site ?? "https://balinusamedia.com").href;
+---
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{title}</title>
+
+    <meta
+        name="description"
+        content={description}
+    >
+
+    <meta
+        name="author"
+        content="Bali Nusa Media"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+
+    <link
+        rel="canonical"
+        href={canonicalUrl}
+    >
+
+    <link
+        rel="icon"
+        href="/assets/img/icon.png"
+        type="image/png"
+    >
+
+    <link
+        rel="stylesheet"
+        href="/assets/css/style.css"
+    >
+
+</head>
+
+<body>
+
+    <Header />
+
+    <slot />
+
+    <Footer />
+
+</body>
+
+</html>

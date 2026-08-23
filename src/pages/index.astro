@@ -1,17 +1,234 @@
 ---
-
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout>
+
+    <main class="hub-container">
+
+        <section class="hero-hub">
+
+            <div class="hero-text">
+
+                <p class="eyebrow">
+                    KARANGASEM, BALI
+                </p>
+
+                <h1>
+                    Satu Vendor Komplit untuk
+                    <span>
+                        Infrastruktur & Digitalisasi
+                    </span>
+                    Bisnis Anda
+                </h1>
+
+                <p>
+                    Bali Nusa Media menghadirkan layanan teknologi
+                    profesional untuk membantu rumah dan bisnis,
+                    mulai dari Internet & WiFi, sistem keamanan CCTV,
+                    hingga pembuatan website.
+                </p>
+
+            </div>
+
+
+            <div class="hero-image">
+
+                <img
+                    src="/assets/img/hero.webp"
+                    alt="Bali Nusa Media - Internet, CCTV dan Web Development"
+                    loading="eager"
+                >
+
+            </div>
+
+        </section>
+
+
+        <section class="services-section">
+
+            <div class="section-title">
+
+                <p class="eyebrow">
+                    LAYANAN KAMI
+                </p>
+
+                <h2>
+                    Solusi Teknologi untuk Rumah & Bisnis
+                </h2>
+
+            </div>
+
+
+            <div class="grid-services">
+
+
+                <div class="card-service">
+
+                    <div class="card-image-wrapper">
+
+                        <img
+                            src="/assets/img/wifi/hero-jaringan-wifi.webp"
+                            alt="Layanan Internet dan WiFi Karangasem"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <h3>
+                            Internet & WiFi
+                        </h3>
+
+                        <p>
+                            Solusi jaringan internet dan WiFi
+                            untuk rumah, villa, restoran,
+                            kantor, toko, dan berbagai kebutuhan
+                            bisnis di Karangasem.
+                        </p>
+
+                    </div>
+                    <a href="/internet/" class="btn-card">
+                        Lihat Layanan
+                    </a>
+
+                </div>
+
+
+                <div class="card-service">
+
+                    <div class="card-image-wrapper">
+
+                        <img
+                            src="/assets/img/cctv/cctv-hero.webp"
+                            alt="Jasa CCTV Karangasem"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <h3>
+                            Sistem Keamanan CCTV
+                        </h3>
+
+                        <p>
+                            Instalasi CCTV profesional dengan
+                            akses pemantauan online untuk rumah,
+                            villa, kantor, toko, restoran,
+                            dan tempat usaha.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="/cctv/"
+                        class="btn-card"
+                    >
+                        Lihat Layanan
+                    </a>
+
+                </div>
+
+
+                <div class="card-service">
+
+                    <div class="card-image-wrapper">
+
+                        <img
+                            src="/assets/img/web-dev/web-karangasem.webp"
+                            alt="Web Development Karangasem"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <h3>
+                            Web Development
+                        </h3>
+
+                        <p>
+                            Pembuatan website profesional,
+                            cepat, responsif, dan SEO-friendly
+                            untuk bisnis, villa, UMKM,
+                            dan kebutuhan digital lainnya.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="/website/"
+                        class="btn-card"
+                    >
+                        Lihat Layanan
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="local-section">
+
+            <div class="section-title">
+
+                <p class="eyebrow">
+                    BALI NUSA MEDIA
+                </p>
+
+                <h2>
+                    Partner Teknologi untuk Karangasem
+                </h2>
+
+                <p>
+                    Kami membantu masyarakat dan pelaku usaha
+                    di Karangasem mendapatkan solusi teknologi
+                    yang tepat, mulai dari konektivitas internet,
+                    keamanan CCTV, hingga pengembangan website.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="cta-section">
+
+            <div class="cta-inner">
+
+                <h2>
+                    Butuh Internet, CCTV atau Website?
+                </h2>
+
+                <p>
+                    Konsultasikan kebutuhan teknologi Anda
+                    dengan Bali Nusa Media.
+                </p>
+
+                <a
+                    href="https://wa.me/6285168981959"
+                    class="btn-cta"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Konsultasi via WhatsApp
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</MainLayout>
