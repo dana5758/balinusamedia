@@ -1,11 +1,8 @@
 name: Instant Deploy from Google Sheets Webhook
 
 on:
-  # Menerima sinyal webhook dari Google Apps Script
   repository_dispatch:
     types: [sheet_updated]
-  
-  # Tombol manual jaga-jaga
   workflow_dispatch:
 
 jobs:
@@ -26,8 +23,3 @@ jobs:
 
       - name: Build Project
         run: npm run build
-
-      # Jika Anda menggunakan integrasi otomatis Cloudflare Pages via GitHub, 
-      # proses build di atas otomatis mengirim hasil terbarunya ke Cloudflare.
-      - name: Success Notification
-        run: echo "Website berhasil di-update secara instan karena perubahan data Google Sheets!"
