@@ -1,5 +1,9 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import allProducts from "../../data/products.json";
+
+// Filter khusus produk berkategori Jaringan
+const networkProducts = allProducts.filter(item => item.kategori === "Jaringan");
 ---
 
 <MainLayout
@@ -106,82 +110,50 @@ import MainLayout from "../../layouts/MainLayout.astro";
 
         </section>
 
-
-        <section class="service-section service-section-soft">
+        <section class="service-section">
 
             <div class="section-title">
-
                 <p class="eyebrow">
-                    LAYANAN KAMI
+                    DAFTAR PAKET
                 </p>
-
                 <h2>
-                    Solusi Jaringan Sesuai Kebutuhan
+                    Pilihan Paket Jaringan & WiFi Terbaik
                 </h2>
-
+                <p>
+                    Pilih paket perangkat jaringan yang sesuai dengan skala kebutuhan properti Anda.
+                </p>
             </div>
 
+            <div class="custom-product-grid">
+                {networkProducts.map((item) => (
+                    <div class="custom-product-card">
+                        <div>
+                            <div class="custom-product-img-wrap">
+                                <img src={item.gambar} alt={item.nama_paket} loading="lazy" />
+                            </div>
+                            <span class="custom-badge">{item.kategori}</span>
+                            <h3 class="custom-product-title">{item.nama_paket}</h3>
+                            <p class="custom-product-desc">{item.deskripsi}</p>
+                            <p class="custom-product-spec">Spesifikasi: {item.spesifikasi}</p>
+                        </div>
 
-            <div class="service-grid-2">
-
-                <article class="service-info-card">
-
-                    <h3>
-                        WiFi Rumah
-                    </h3>
-
-                    <p>
-                        Penataan jaringan WiFi untuk rumah
-                        agar jangkauan lebih sesuai dengan
-                        kebutuhan penghuni.
-                    </p>
-
-                </article>
-
-
-                <article class="service-info-card">
-
-                    <h3>
-                        WiFi Bisnis
-                    </h3>
-
-                    <p>
-                        Solusi jaringan untuk toko, restoran,
-                        kantor, UMKM, dan tempat usaha.
-                    </p>
-
-                </article>
-
-
-                <article class="service-info-card">
-
-                    <h3>
-                        WiFi Villa & Penginapan
-                    </h3>
-
-                    <p>
-                        Perencanaan jaringan untuk area
-                        penginapan dengan kebutuhan akses
-                        Internet di beberapa ruangan atau area.
-                    </p>
-
-                </article>
-
-
-                <article class="service-info-card">
-
-                    <h3>
-                        Optimasi Jaringan
-                    </h3>
-
-                    <p>
-                        Pemeriksaan dan penataan jaringan agar
-                        perangkat dan koneksi dapat bekerja
-                        lebih optimal.
-                    </p>
-
-                </article>
-
+                        <div class="custom-product-footer">
+                            <div class="custom-price-wrap">
+                                <span class="custom-price">{item.harga}</span>
+                                {item.harga_coret && <span class="custom-price-old">{item.harga_coret}</span>}
+                            </div>
+                            
+                            <a 
+                                href={`https://wa.me/${item.whatsapp}?text=Halo,%20saya%20tertarik%20dengan%20${encodeURIComponent(item.nama_paket)}`} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="custom-btn-whatsapp"
+                            >
+                                Pesan via WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                ))}
             </div>
 
         </section>
@@ -268,3 +240,121 @@ import MainLayout from "../../layouts/MainLayout.astro";
     </main>
 
 </MainLayout>
+
+<!-- CSS KARTU PRODUK (MENGGUNAKAN DESIGN SYSTEM GLOBAL) -->
+<style>
+  .custom-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+    margin-top: 2rem;
+  }
+
+  .custom-product-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .custom-product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .custom-product-img-wrap {
+    background: var(--sand);
+    height: 190px;
+    border-radius: calc(var(--radius) - 4px);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .custom-product-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .custom-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: var(--sand);
+    color: var(--blue);
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+
+  .custom-product-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .custom-product-desc {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .custom-product-spec {
+    font-size: 0.82rem;
+    color: #6b7280;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+
+  .custom-product-footer {
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+    margin-top: auto;
+  }
+
+  .custom-price-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .custom-price {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #dc2626;
+  }
+
+  .custom-price-old {
+    font-size: 0.85rem;
+    color: #9ca3af;
+    text-decoration: line-through;
+  }
+
+  .custom-btn-whatsapp {
+    display: block;
+    width: 100%;
+    background-color: #16a34a;
+    color: #ffffff;
+    text-align: center;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .custom-btn-whatsapp:hover {
+    background-color: #15803d;
+  }
+</style>
