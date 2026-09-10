@@ -4,374 +4,388 @@ import allProducts from "../../data/products.json";
 
 // Filter khusus produk berkategori CCTV
 const cctvProducts = allProducts.filter(item => item.kategori === "CCTV");
+
+// Data Testimoni Klien CCTV
+const testimonials = [
+  {
+    nama: "I Made Sukadana",
+    usaha: "Pemilik Toko Bangunan & Grosir",
+    lokasi: "Amlapura, Karangasem",
+    isi: "Hasil gambar kamera CCTV sangat tajam, plat nomor kendaraan dan wajah orang terlihat jelas bahkan saat malam hari. Instalasi kabelnya sangat rapi dan setting pantau lewat HP dibantu sampai tuntas.",
+    bintang: 5
+  },
+  {
+    nama: "Komang Wira",
+    usaha: "Pengelola Villa Pribadi",
+    lokasi: "Candidasa, Karangasem",
+    isi: "Sistem kamera outdoor-nya tahan cuaca dan hujan deras. Sekarang saya bisa memantau kondisi gerbang dan kolam renang villa langsung dari smartphone kapan saja dari luar kota.",
+    bintang: 5
+  },
+  {
+    nama: "Putu Agus Suantara",
+    usaha: "Rumah Tinggal & Garasi",
+    lokasi: "Rendang, Karangasem",
+    isi: "Respon teknisi Bali Nusa Media sangat cepat. Pemasangan 4 titik kamera selesai dalam satu hari kerja tanpa merusak estetika dinding rumah. Pelayanan ramah dan bergaransi.",
+    bintang: 5
+  }
+];
+
+// Data FAQ Khusus CCTV
+const faqList = [
+  {
+    q: "Bisa memantau rekaman CCTV langsung lewat HP jarak jauh?",
+    a: "Bisa. Selama di lokasi pemasangan terdapat koneksi internet (WiFi), kami akan setting aplikasi pemantauan di HP Android atau iPhone Anda secara gratis sehingga bisa dipantau langsung kapan saja dan di mana saja."
+  },
+  {
+    q: "Berapa lama kapasitas rekaman video tersimpan?",
+    a: "Lama penyimpanan rekaman bergantung pada kapasitas Harddisk (HDD) atau MicroSD yang dipilih serta jumlah kamera. Standar paket 4 kamera dengan HDD 1TB dapat merekam 10 hingga 14 hari secara terus-menerus sebelum otomatis menimpa rekaman tertua (loop recording)."
+  },
+  {
+    q: "Apakah kamera CCTV tetap merekam jelas saat malam hari / lampu padam?",
+    a: "Ya. Semua unit kamera yang kami pasang sudah dilengkapi fitur Smart IR (Infrared) atau ColorVu / Full Color Night Vision, sehingga tetap mampu menangkap gambar tajam dan jelas meski dalam kondisi ruangan gelap total."
+  },
+  {
+    q: "Apakah kabel dan konektor sudah termasuk dalam paket pemasangan?",
+    a: "Seluruh paket pemasangan CCTV kami sudah sistem All-in / siap pakai, mencakup unit kamera (indoor/outdoor), DVR/NVR, kabel coaxial/UTP standar, konektor BNC/RJ45, power supply/adaptor, serta jasa instalasi dan setting sistem."
+  },
+  {
+    q: "Apakah ada garansi untuk perangkat dan jasa instalasi?",
+    a: "Ada. Kami memberikan garansi instalasi dan pemeliharaan selama 30 hari kalender, serta garansi resmi distributor untuk unit kamera dan mesin perekam (DVR/NVR) selama 1 hingga 2 tahun."
+  }
+];
+
+// Schema Markup JSON-LD (LocalBusiness + FAQPage)
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "name": "Bali Nusa Media - Jasa Pasang CCTV & Sistem Keamanan",
+      "image": "https://balinusamedia.com/assets/img/cctv/cctv-hero.webp",
+      "telephone": "+6285168981959",
+      "priceRange": "Rp 1.000.000 - Rp 10.000.000",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Karangasem",
+        "addressRegion": "Bali",
+        "addressCountry": "ID"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -8.4485,
+        "longitude": 115.6128
+      },
+      "url": "https://balinusamedia.com/layanan/jasa-pasang-cctv",
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Karangasem" },
+        { "@type": "AdministrativeArea", "name": "Amlapura" },
+        { "@type": "AdministrativeArea", "name": "Candidasa" },
+        { "@type": "AdministrativeArea", "name": "Amed" },
+        { "@type": "AdministrativeArea", "name": "Denpasar" },
+        { "@type": "AdministrativeArea", "name": "Badung" },
+        { "@type": "AdministrativeArea", "name": "Gianyar" },
+        { "@type": "AdministrativeArea", "name": "Bali" }
+      ],
+      "description": "Jasa pasang CCTV profesional di Karangasem dan seluruh Bali. Instalasi kamera keamanan analog HD dan IP Camera untuk rumah, toko, villa, ruko, dan kantor."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqList.map(item => ({
+        "@type": "Question",
+        "name": item.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.a
+        }
+      }))
+    }
+  ]
+};
 ---
 
 <MainLayout
-    title="Jasa Pasang CCTV di Karangasem | Bali Nusa Media"
-    description="Jasa pemasangan CCTV untuk rumah, toko, kantor, villa, restoran, dan bisnis di Karangasem, Bali."
+  title="Jasa Pasang CCTV Karangasem & Seluruh Bali | Teknisi Kamera Keamanan"
+  description="Jasa pemasangan CCTV profesional untuk rumah, toko, kantor, villa, restoran, dan bisnis di Karangasem serta seluruh wilayah Bali. Gambar tajam, pantau via HP."
 >
 
-    <main class="hub-container service-page">
+  <!-- Panggil Stylesheet Global -->
+  <link rel="stylesheet" href="/assets/css/style.css" />
 
-        <section class="service-hero">
+  <!-- Schema Markup JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 
-            <div class="service-hero-text">
+  <main class="hub-container service-page">
 
-                <p class="eyebrow">
-                    SISTEM KEAMANAN CCTV
-                </p>
+    <!-- 1. HERO SECTION -->
+    <section class="service-hero">
+      <div class="service-hero-text">
+        <p class="eyebrow">
+          SISTEM KEAMANAN CCTV BALI
+        </p>
+        <h1>
+          Jasa Pasang CCTV di Karangasem &amp; Layanan Keamanan Seluruh Bali
+        </h1>
+        <p>
+          <strong>Bali Nusa Media</strong> menyediakan layanan instalasi kamera CCTV analog HD dan IP Camera untuk membantu pemilik rumah, villa, toko, dan kantor memantau area penting secara real-time langsung dari smartphone.
+        </p>
+        <div class="hero-cta-group">
+          <a
+            href="https://wa.me/6285168981959?text=Halo%20Bali%20Nusa%20Media,%20saya%20mau%20konsultasi%20pemasangan%20CCTV%20di%20Bali"
+            class="btn-cta"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Konsultasi CCTV Gratis
+          </a>
+        </div>
+      </div>
 
-                <h1>
-                    Jasa Pasang CCTV untuk Rumah,
-                    Bisnis dan Properti
-                </h1>
+      <div class="service-hero-image">
+        <img
+          src="/assets/img/cctv/cctv-hero.webp"
+          alt="Jasa pemasangan kamera CCTV profesional di Karangasem Bali"
+          width="600"
+          height="400"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </section>
 
-                <p>
-                    Bali Nusa Media menyediakan layanan
-                    pemasangan CCTV untuk membantu pemilik
-                    rumah dan bisnis memantau area penting
-                    dengan sistem yang sesuai kebutuhan lokasi.
-                </p>
+    <!-- 2. KEBUTUHAN CCTV -->
+    <section class="service-section">
+      <div class="section-title">
+        <p class="eyebrow">
+          SOLUSI PEMANTAUAN PROPERTI
+        </p>
+        <h2>
+          Sistem CCTV untuk Rumah, Tempat Usaha, dan Bisnis
+        </h2>
+        <p>
+          Tingkatkan keamanan aset Anda dengan kamera beresolusi tajam yang terhubung langsung ke internet dan dapat dipantau 24 jam non-stop.
+        </p>
+      </div>
 
-                <a
-                    href="https://wa.me/6285168981959"
-                    class="btn-cta"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Konsultasi CCTV
-                </a>
+      <div class="service-grid-3">
+        <article class="service-info-card">
+          <h3>
+            CCTV Rumah &amp; Garasi
+          </h3>
+          <p>
+            Memantau area halaman, garasi kendaraan, gerbang masuk, dan ruang keluarga demi perlindungan maksimal bagi keluarga Anda.
+          </p>
+        </article>
 
+        <article class="service-info-card">
+          <h3>
+            CCTV Toko &amp; UMKM
+          </h3>
+          <p>
+            Membantu pemilik usaha mengawasi kasir, keluar-masuk barang di gudang, rak toko, dan kinerja operasional karyawan.
+          </p>
+        </article>
+
+        <article class="service-info-card">
+          <h3>
+            CCTV Villa &amp; Hospitality
+          </h3>
+          <p>
+            Solusi pemantauan perimeter luar villa, area parkir tamu, lobi, dan koridor tanpa mengorbankan privasi tamu yang menginap.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. DAFTAR PAKET PRODUK -->
+    <section class="service-section">
+      <div class="section-title">
+        <p class="eyebrow">
+          DAFTAR PAKET LENGKAP
+        </p>
+        <h2>
+          Pilihan Paket Pasang CCTV Siap Pakai
+        </h2>
+        <p>
+          Seluruh paket sudah termasuk kamera resolusi tinggi, DVR/NVR, media rekam harddisk, kabel instalasi, dan jasa setting online ke HP. Butuh koneksi internet stabil untuk online? Cek juga <a href="/internet" style="color: var(--blue, #2563eb); font-weight: 600; text-decoration: underline;">layanan pasang WiFi kami</a>.
+        </p>
+      </div>
+
+      <div class="custom-product-grid">
+        {cctvProducts.map((item) => (
+          <div class="custom-product-card">
+            <div>
+              <div class="custom-product-img-wrap">
+                <img 
+                  src={item.gambar} 
+                  alt={`${item.nama_paket} - Pasang CCTV Karangasem Bali`} 
+                  loading="lazy" 
+                  width="400" 
+                  height="250" 
+                />
+              </div>
+              <span class="custom-badge">{item.kategori}</span>
+              <h3 class="custom-product-title">{item.nama_paket}</h3>
+              <p class="custom-product-desc">{item.deskripsi}</p>
+              <p class="custom-product-spec"><strong>Spesifikasi:</strong> {item.spesifikasi}</p>
+              {item.unggulan && (
+                <p class="custom-product-feature"><strong>Keunggulan:</strong> {item.unggulan}</p>
+              )}
             </div>
 
+            <div class="custom-product-footer">
+              <div class="custom-price-wrap">
+                <span class="custom-price">{item.harga}</span>
+                {item.harga_coret && <span class="custom-price-old">{item.harga_coret}</span>}
+              </div>
 
-            <div class="service-hero-image">
-
-                <img
-                    src="/assets/img/cctv/cctv-hero.webp"
-                    alt="Jasa pemasangan CCTV di Karangasem"
-                >
-
-            </div>
-
-        </section>
-
-
-        <section class="service-section">
-
-            <div class="section-title">
-
-                <p class="eyebrow">
-                    UNTUK BERBAGAI KEBUTUHAN
-                </p>
-
-                <h2>
-                    CCTV untuk Rumah dan Tempat Usaha
-                </h2>
-
-            </div>
-
-
-            <div class="service-grid-3">
-
-                <article class="service-info-card">
-
-                    <h3>
-                        CCTV Rumah
-                    </h3>
-
-                    <p>
-                        Untuk memantau area rumah, halaman,
-                        garasi, pintu masuk, dan area penting
-                        lainnya.
-                    </p>
-
-                </article>
-
-
-                <article class="service-info-card">
-
-                    <h3>
-                        CCTV Toko & UMKM
-                    </h3>
-
-                    <p>
-                        Membantu pemilik usaha mengawasi area
-                        kasir, pintu masuk, ruang kerja,
-                        dan area operasional.
-                    </p>
-
-                </article>
-
-
-                <article class="service-info-card">
-
-                    <h3>
-                        CCTV Villa & Properti
-                    </h3>
-
-                    <p>
-                        Solusi pemantauan untuk villa,
-                        penginapan, kantor, dan properti
-                        lainnya.
-                    </p>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- KATALOG PAKET CCTV (MENGGUNAKAN DESIGN SYSTEM CSS UTAMA) -->
-        <section class="service-section">
-
-            <div class="section-title">
-
-                <p class="eyebrow">
-                    DAFTAR PAKET
-                </p>
-
-                <h2>
-                    Pilihan Paket CCTV Terbaik
-                </h2>
-
-                <p>
-                    Pilih paket perangkat CCTV yang sesuai dengan skala kebutuhan properti Anda.
-                </p>
-
-            </div>
-
-            <div class="custom-product-grid">
-                {cctvProducts.map((item) => (
-                    <div class="custom-product-card">
-                        <div>
-                            <div class="custom-product-img-wrap">
-                                <img src={item.gambar} alt={item.nama_paket} loading="lazy" />
-                            </div>
-                            <span class="custom-badge">{item.kategori}</span>
-                            <h3 class="custom-product-title">{item.nama_paket}</h3>
-                            <p class="custom-product-desc">{item.deskripsi}</p>
-                            <p class="custom-product-spec">Spesifikasi: {item.spesifikasi}</p>
-                        </div>
-
-                        <div class="custom-product-footer">
-                            <div class="custom-price-wrap">
-                                <span class="custom-price">{item.harga}</span>
-                                {item.harga_coret && <span class="custom-price-old">{item.harga_coret}</span>}
-                            </div>
-                            
-                            <a 
-                                href={`https://wa.me/${item.whatsapp}?text=Halo,%20saya%20tertarik%20dengan%20${encodeURIComponent(item.nama_paket)}`} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="custom-btn-whatsapp"
-                            >
-                                Pesan via WhatsApp
-                            </a>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-        </section>
-
-        <section class="service-section">
-
-            <div class="section-title">
-
-                <p class="eyebrow">
-                    PROSES PEMASANGAN
-                </p>
-
-                <h2>
-                    Pemasangan CCTV yang Terencana
-                </h2>
-
-            </div>
-
-
-            <div class="service-process">
-
-                <div>
-                    <span>01</span>
-                    <h3>Survey Lokasi</h3>
-                    <p>
-                        Menentukan area yang membutuhkan
-                        pemantauan.
-                    </p>
-                </div>
-
-                <div>
-                    <span>02</span>
-                    <h3>Perencanaan</h3>
-                    <p>
-                        Menentukan posisi kamera dan kebutuhan
-                        sistem.
-                    </p>
-                </div>
-
-                <div>
-                    <span>03</span>
-                    <h3>Instalasi</h3>
-                    <p>
-                        Pemasangan kamera dan perangkat
-                        pendukung.
-                    </p>
-                </div>
-
-                <div>
-                    <span>04</span>
-                    <h3>Konfigurasi</h3>
-                    <p>
-                        Pengaturan sistem dan akses pemantauan.
-                    </p>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <section class="cta-section">
-
-            <h2>
-                Ingin Memasang CCTV?
-            </h2>
-
-            <p>
-                Ceritakan kebutuhan lokasi Anda kepada
-                Bali Nusa Media.
-            </p>
-
-            <a
-                href="https://wa.me/6285168981959"
-                class="btn-cta"
+              <a
+                href={`https://wa.me/${item.whatsapp}?text=Halo%20Bali%20Nusa%20Media,%20saya%20tertarik%20dengan%20${encodeURIComponent(item.nama_paket)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-            >
-                Konsultasi via WhatsApp
-            </a>
+                class="custom-btn-whatsapp"
+              >
+                Pesan via WhatsApp
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
 
-        </section>
+    <!-- 4. PROSES PEMASANGAN -->
+    <section class="service-section">
+      <div class="section-title">
+        <p class="eyebrow">
+          STANDAR KERJA
+        </p>
+        <h2>
+          Pemasangan CCTV Terencana &amp; Kabel Rapi
+        </h2>
+      </div>
 
-    </main>
+      <div class="service-process">
+        <div>
+          <span>01</span>
+          <h3>Survey Lokasi</h3>
+          <p>
+            Menganalisis titik buta (*blind spot*) dan menentukan posisi kamera paling strategis.
+          </p>
+        </div>
 
+        <div>
+          <span>02</span>
+          <h3>Penarikan Kabel</h3>
+          <p>
+            Instalasi kabel tertutup rapi menggunakan klem atau pelindung conduit agar awet dan aman.
+          </p>
+        </div>
+
+        <div>
+          <span>03</span>
+          <h3>Pemasangan Kamera</h3>
+          <p>
+            Pemasangan unit kamera indoor/outdoor dan koneksi ke DVR/NVR sentral.
+          </p>
+        </div>
+
+        <div>
+          <span>04</span>
+          <h3>Setting Online HP</h3>
+          <p>
+            Konfigurasi aplikasi di smartphone Anda agar rekaman bisa dipantau langsung kapan pun.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. WILAYAH OPERASIONAL (LOCAL SEO TARGETING) -->
+    <section class="service-section coverage-section">
+      <div class="section-title">
+        <p class="eyebrow">WILAYAH OPERASIONAL</p>
+        <h2>Jangkauan Pemasangan CCTV di Bali</h2>
+        <p>
+          Teknisi kami siap datang langsung untuk survei dan instalasi CCTV ke lokasi properti Anda di Karangasem dan seluruh Bali.
+        </p>
+      </div>
+
+      <div class="coverage-grid">
+        <div class="coverage-card">
+          <h3>Area Utama (Karangasem &amp; Sekitarnya):</h3>
+          <p>
+            Amlapura, Candidasa, Amed, Tulamben, Padangbai, Manggis, Abang, Bebandem, Rendang, Selat, Kubu, dan Sidemen.
+          </p>
+        </div>
+        <div class="coverage-card">
+          <h3>Layanan Seluruh Bali:</h3>
+          <p>
+            Denpasar, Badung (Kuta, Canggu, Seminyak), Gianyar (Ubud), Klungkung, Tabanan, Bangli, Buleleng (Singaraja), dan Jembrana.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. TESTIMONI PELANGGAN -->
+    <section class="service-section">
+      <div class="section-title">
+        <p class="eyebrow">TESTIMONI PELANGGAN</p>
+        <h2>Apa Kata Pemilik Usaha &amp; Properti?</h2>
+        <p>Pengalaman nyata klien yang telah mempercayakan pengamanan propertinya bersama Bali Nusa Media.</p>
+      </div>
+
+      <div class="testimonial-grid">
+        {testimonials.map((testi) => (
+          <article class="testimonial-card">
+            <div class="testimonial-stars">{"★".repeat(testi.bintang)}</div>
+            <p class="testimonial-text">"{testi.isi}"</p>
+            <div class="testimonial-author">
+              <strong>{testi.nama}</strong>
+              <span>{testi.usaha} — {testi.lokasi}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- 7. FAQ (SEBELUM FINAL CTA) -->
+    <section class="service-section">
+      <div class="section-title">
+        <p class="eyebrow">TANYA JAWAB</p>
+        <h2>Pertanyaan yang Sering Diajukan (FAQ)</h2>
+        <p>Informasi seputar instalasi, pemantauan online jarak jauh, dan garansi kamera CCTV.</p>
+      </div>
+
+      <div class="faq-container">
+        {faqList.map((faq) => (
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>{faq.q}</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- 8. FINAL CTA FOOTER -->
+    <section class="cta-section">
+      <h2>
+        Ingin Pasang CCTV untuk Rumah atau Usaha Anda?
+      </h2>
+      <p>
+        Konsultasikan titik lokasi dan kebutuhan sistem keamanan Anda bersama teknisi <strong>Bali Nusa Media</strong>. Layanan cepat, bergaransi, dan siap terima beres.
+      </p>
+      <a
+        href="https://wa.me/6285168981959?text=Halo%20Bali%20Nusa%20Media,%20saya%20mau%20jadwalkan%20pemasangan%20CCTV"
+        class="btn-cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Konsultasi via WhatsApp
+      </a>
+    </section>
+
+  </main>
 </MainLayout>
-
-<style>
-  .custom-product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 28px;
-    margin-top: 2rem;
-  }
-
-  .custom-product-card {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: var(--shadow);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .custom-product-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-hover);
-  }
-
-  .custom-product-img-wrap {
-    background: var(--sand);
-    height: 190px;
-    border-radius: calc(var(--radius) - 4px);
-    overflow: hidden;
-    margin-bottom: 16px;
-  }
-
-  .custom-product-img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .custom-badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    background: var(--sand);
-    color: var(--blue);
-    padding: 4px 10px;
-    border-radius: 20px;
-    margin-bottom: 10px;
-  }
-
-  .custom-product-title {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 8px;
-    line-height: 1.3;
-  }
-
-  .custom-product-desc {
-    font-size: 0.9rem;
-    color: var(--ink-soft);
-    margin-bottom: 10px;
-    line-height: 1.5;
-  }
-
-  .custom-product-spec {
-    font-size: 0.82rem;
-    color: #6b7280;
-    font-style: italic;
-    margin-bottom: 20px;
-  }
-
-  .custom-product-footer {
-    border-top: 1px solid var(--line);
-    padding-top: 16px;
-    margin-top: auto;
-  }
-
-  .custom-price-wrap {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 14px;
-  }
-
-  .custom-price {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #dc2626;
-  }
-
-  .custom-price-old {
-    font-size: 0.85rem;
-    color: #9ca3af;
-    text-decoration: line-through;
-  }
-
-  .custom-btn-whatsapp {
-    display: block;
-    width: 100%;
-    background-color: #16a34a;
-    color: #ffffff;
-    text-align: center;
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
-  }
-
-  .custom-btn-whatsapp:hover {
-    background-color: #15803d;
-  }
-</style>

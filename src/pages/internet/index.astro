@@ -2,359 +2,357 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import allProducts from "../../data/products.json";
 
-// Filter khusus produk berkategori Jaringan
+// Filter khusus produk kategori Jaringan
 const networkProducts = allProducts.filter(item => item.kategori === "Jaringan");
+
+// Data Testimoni
+const testimonials = [
+  {
+    nama: "Wayan Sudarma",
+    usaha: "Pemilik Villa & Homestay",
+    lokasi: "Amed, Karangasem",
+    isi: "Sebelumnya tamu sering komplain Wi-Fi putus di kamar ujung dan dekat kolam. Setelah pasang AP Ruijie plafon dan outdoor dari Bali Nusa Media, sinyal rata dan roaming lancar tanpa putus.",
+    bintang: 5
+  },
+  {
+    nama: "Ketut Arimbawa",
+    usaha: "Owner Cafe & Resto",
+    lokasi: "Amlapura, Karangasem",
+    isi: "Setting MikroTik voucher-nya sangat membantu. Sekarang internet kasir tidak pernah lemot lagi meski kafe ramai pelanggan yang streaming YouTube. Pelayanan rapi dan cepat.",
+    bintang: 5
+  },
+  {
+    nama: "Gede Hendra",
+    usaha: "Pengelola Ruko & Kantor",
+    lokasi: "Denpasar",
+    isi: "Pengerjaan kabel LAN rapi sekali di plafon dan dinding. Konfigurasi Dual ISP MikroTik berjalan mulus, pas internet utama gangguan langsung backup otomatis.",
+    bintang: 5
+  }
+];
+
+// Data FAQ
+const faqList = [
+  {
+    q: "Berapa lama proses pemasangan WiFi dan setting jaringan?",
+    a: "Untuk pemasangan standar 1 unit Access Point atau router MikroTik dengan penarikan kabel LAN 20 meter rata-rata selesai dalam 2 hingga 4 jam sampai jaringan aktif dan siap digunakan."
+  },
+  {
+    q: "Apakah Bali Nusa Media melayani area di luar Karangasem?",
+    a: "Ya. Meskipun basis kami di Karangasem (Amlapura, Candidasa, Amed), kami melayani instalasi ke seluruh Bali termasuk Denpasar, Badung (Canggu/Kuta), Gianyar (Ubud), Klungkung, hingga Buleleng."
+  },
+  {
+    q: "Apakah paket ini sudah termasuk langganan internet bulanan?",
+    a: "Paket ini adalah pengadaan perangkat keras (hardware), instalasi kabel fisik, dan jasa setting jaringan profesional (AP / MikroTik). Anda tetap menggunakan modem internet dari provider ISP yang sudah ada (seperti MyRepublic, Indihome, Biznet, CBN, dll)."
+  },
+  {
+    q: "Bagaimana jika kabel yang dibutuhkan lebih dari 20 meter?",
+    a: "Setiap paket sudah mencakup kabel LAN Cat5e/Cat6 standar hingga 20 meter. Jika medan di lokasi membutuhkan panjang lebih dari 20 meter atau pipa conduit pelindung kabel, biaya dihitung per meter sesuai kebutuhan lapangan."
+  },
+  {
+    q: "Apakah ada garansi setelah pemasangan selesai?",
+    a: "Kami memberikan garansi konfigurasi dan instalasi selama 30 hari. Perangkat keras seperti Ruijie dan TP-Link dilindungi garansi resmi distributor hingga 1-3 tahun."
+  }
+];
+
+// Schema Markup JSON-LD (LocalBusiness + FAQPage)
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "name": "Bali Nusa Media - Jasa Pasang WiFi & Jaringan Internet",
+      "image": "https://balinusamedia.com/assets/img/wifi/hero-jaringan-wifi.webp",
+      "telephone": "+6285168981959",
+      "priceRange": "Rp 550.000 - Rp 2.500.000",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Karangasem",
+        "addressRegion": "Bali",
+        "addressCountry": "ID"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -8.4485,
+        "longitude": 115.6128
+      },
+      "url": "https://balinusamedia.com/layanan/jasa-pasang-wifi",
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Karangasem" },
+        { "@type": "AdministrativeArea", "name": "Amlapura" },
+        { "@type": "AdministrativeArea", "name": "Amed" },
+        { "@type": "AdministrativeArea", "name": "Candidasa" },
+        { "@type": "AdministrativeArea", "name": "Denpasar" },
+        { "@type": "AdministrativeArea", "name": "Badung" },
+        { "@type": "AdministrativeArea", "name": "Gianyar" },
+        { "@type": "AdministrativeArea", "name": "Bali" }
+      ],
+      "description": "Jasa pemasangan WiFi, setting Access Point Ruijie/TP-Link, dan instalasi MikroTik profesional untuk rumah, villa, ruko, kafe, dan kantor di Karangasem dan seluruh Bali."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqList.map(item => ({
+        "@type": "Question",
+        "name": item.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.a
+        }
+      }))
+    }
+  ]
+};
 ---
 
 <MainLayout
-    title="Jasa Pasang WiFi & Internet di Karangasem | Bali Nusa Media"
-    description="Jasa pemasangan WiFi dan solusi jaringan internet untuk rumah, villa, kantor, restoran, toko, dan bisnis di Karangasem, Bali."
+  title="Jasa Pasang WiFi Karangasem & Seluruh Bali | Teknisi Jaringan Profesional"
+  description="Jasa pasang WiFi, router, setting MikroTik & Access Point Ruijie/TP-Link untuk rumah, villa, kafe, restoran, dan kantor di Karangasem serta seluruh Bali."
 >
 
-    <main class="hub-container service-page">
+  <!-- Panggil CSS dari folder public/assets/css/ -->
+  <link rel="stylesheet" href="/assets/css/style.css" />
 
-        <section class="service-hero">
+  <!-- Schema Markup JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 
-            <div class="service-hero-text">
+  <main class="hub-container service-page">
 
-                <p class="eyebrow">
-                    INTERNET & WIFI
-                </p>
+    <!-- 1. HERO SECTION -->
+    <section class="service-hero">
+      <div class="service-hero-text">
+        <p class="eyebrow">TEKNISI JARINGAN &amp; WIFI BALI</p>
+        <h1>
+          Jasa Pasang WiFi di Karangasem &amp; Layanan Jaringan Seluruh Bali
+        </h1>
+        <p>
+          <strong>Bali Nusa Media</strong> melayani instalasi kabel LAN, pemasangan Access Point (AP), setting MikroTik hotspot voucher, hingga optimalisasi sinyal internet tanpa lag untuk villa, rumah, kafe, restoran, ruko, dan kantor.
+        </p>
+        <div class="hero-cta-group">
+          <a
+            href="https://wa.me/6285168981959?text=Halo%20Bali%20Nusa%20Media,%20saya%20mau%20konsultasi%20pemasangan%20WiFi%20di%20Bali"
+            class="btn-cta"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Konsultasi WiFi Gratis
+          </a>
+        </div>
+      </div>
 
-                <h1>
-                    Jasa Pasang WiFi & Solusi Jaringan
-                    untuk Rumah dan Bisnis
-                </h1>
+      <div class="service-hero-image">
+        <img
+          src="/assets/img/wifi/hero-jaringan-wifi.webp"
+          alt="Jasa pemasangan WiFi, Access Point Ruijie, dan MikroTik di Karangasem Bali"
+          width="600"
+          height="400"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </section>
 
-                <p>
-                    Bali Nusa Media membantu menyediakan solusi
-                    jaringan Internet & WiFi yang stabil, rapi,
-                    dan disesuaikan dengan kebutuhan rumah,
-                    villa, kantor, restoran, toko, dan usaha
-                    di Karangasem.
-                </p>
+    <!-- 2. MASALAH JARINGAN -->
+    <section class="service-section">
+      <div class="section-title">
+        <p class="eyebrow">SOLUSI KONEKSI INTERNET</p>
+        <h2>WiFi Sering Putus &amp; Lambat? Ini Solusinya</h2>
+        <p>
+          Koneksi bermasalah sering kali bukan karena provider internet (ISP) Anda, melainkan topologi router dan titik pancar Access Point yang kurang tepat.
+        </p>
+      </div>
 
-                <a
-                    href="https://wa.me/6285168981959"
-                    class="btn-cta"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Konsultasi WiFi
-                </a>
+      <div class="service-grid-3">
+        <article class="service-info-card">
+          <h3>Sinyal Tidak Menjangkau Semua Ruangan</h3>
+          <p>
+            Tembok tebal dan luas bangunan sering menghalangi sinyal. Kami menambahkan Access Point plafon atau mesh gigabit agar sinyal rata di setiap sudut rumah atau villa Anda.
+          </p>
+        </article>
 
+        <article class="service-info-card">
+          <h3>Banyak Perangkat Bikin Lemot</h3>
+          <p>
+            Router standar ISP terbatas menangani banyak user. Kami menyediakan konfigurasi perangkat dual-band MU-MIMO dan router MikroTik untuk pembagian bandwidth yang adil.
+          </p>
+        </article>
+
+        <article class="service-info-card">
+          <h3>Kebutuhan Sistem Voucher Hotspot</h3>
+          <p>
+            Ingin menyediakan Wi-Fi terpisah untuk tamu kos, kasir kafe, atau sistem voucher berbayar? Kami buatkan sistem login page kustom yang aman dari pembobolan.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. DAFTAR PAKET PRODUK -->
+    <section class="service-section">
+      <div class="section-title">
+        <p class="eyebrow">PILIHAN PAKET TERLENGKAP</p>
+        <h2>Paket Pemasangan WiFi &amp; Jaringan Siap Pakai</h2>
+        <p>
+          Semua paket sudah termasuk unit perangkat resmi, kabel standar 20m, konfigurasi jaringan, dan jasa instalasi langsung di lokasi Anda.
+        </p>
+      </div>
+
+      <div class="custom-product-grid">
+        {networkProducts.map((item) => (
+          <div class="custom-product-card">
+            <div>
+              <div class="custom-product-img-wrap">
+                <img 
+                  src={item.gambar} 
+                  alt={`${item.nama_paket} - Instalasi WiFi Karangasem Bali`} 
+                  loading="lazy" 
+                  width="400"
+                  height="250"
+                />
+              </div>
+              <span class="custom-badge">{item.kategori}</span>
+              <h3 class="custom-product-title">{item.nama_paket}</h3>
+              <p class="custom-product-desc">{item.deskripsi}</p>
+              <p class="custom-product-spec"><strong>Spesifikasi:</strong> {item.spesifikasi}</p>
+              {item.unggulan && (
+                <p class="custom-product-feature"><strong>Keunggulan:</strong> {item.unggulan}</p>
+              )}
             </div>
 
-            <div class="service-hero-image">
-
-                <img
-                    src="/assets/img/wifi/hero-jaringan-wifi.webp"
-                    alt="Jasa pemasangan WiFi dan jaringan internet di Karangasem"
-                >
-
+            <div class="custom-product-footer">
+              <div class="custom-price-wrap">
+                <span class="custom-price">{item.harga}</span>
+                {item.harga_coret && <span class="custom-price-old">{item.harga_coret}</span>}
+              </div>
+              
+              <a 
+                href={`https://wa.me/${item.whatsapp}?text=Halo%20Bali%20Nusa%20Media,%20saya%20tertarik%20dengan%20${encodeURIComponent(item.nama_paket)}`} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="custom-btn-whatsapp"
+              >
+                Pesan via WhatsApp
+              </a>
             </div>
+          </div>
+        ))}
+      </div>
+    </section>
 
-        </section>
+    <!-- 4. PROSES KERJA -->
+    <section class="service-section">
+      <div class="section-title">
+        <p class="eyebrow">PROSES MUDAH &amp; TRANSPARAN</p>
+        <h2>Dari Konsultasi Sampai Jaringan Berjalan Stabil</h2>
+      </div>
 
+      <div class="service-process">
+        <div>
+          <span>01</span>
+          <h3>Konsultasi Kebutuhan</h3>
+          <p>Diskusi kebutuhan perangkat berdasarkan denah, luas bangunan, dan estimasi jumlah user.</p>
+        </div>
+        <div>
+          <span>02</span>
+          <h3>Penjadwalan &amp; Survey</h3>
+          <p>Pengecekan jalur penarikan kabel UTP dan titik optimal penempatan access point.</p>
+        </div>
+        <div>
+          <span>03</span>
+          <h3>Instalasi &amp; Setting</h3>
+          <p>Pemasangan kabel rapi, konfigurasi SSID Wi-Fi, pembagian IP, dan manajemen bandwidth MikroTik.</p>
+        </div>
+        <div>
+          <span>04</span>
+          <h3>Testing &amp; Serah Terima</h3>
+          <p>Uji coba stabilitas koneksi, pengukuran kecepatan di setiap titik, dan serah terima akses kontrol.</p>
+        </div>
+      </div>
+    </section>
 
-        <section class="service-section">
+    <!-- 5. WILAYAH OPERASIONAL (COVERAGE LOCAL SEO) -->
+    <section class="service-section coverage-section">
+      <div class="section-title">
+        <p class="eyebrow">WILAYAH OPERASIONAL</p>
+        <h2>Jangkauan Layanan Pemasangan WiFi di Bali</h2>
+        <p>
+          Berbasis di Karangasem, kami siap melayani panggilan instalasi, perbaikan, dan maintenance jaringan internet di seluruh penjuru pulau Bali.
+        </p>
+      </div>
 
-            <div class="section-title">
+      <div class="coverage-grid">
+        <div class="coverage-card">
+          <h3>Area Utama (Karangasem &amp; Sekitarnya):</h3>
+          <p>
+            Kota Amlapura, Candidasa, Amed, Tulamben, Padangbai, Manggis, Abang, Bebandem, Rendang, Selat, Kubu, dan Sidemen.
+          </p>
+        </div>
+        <div class="coverage-card">
+          <h3>Layanan Seluruh Bali:</h3>
+          <p>
+            Denpasar, Badung (Kuta, Seminyak, Canggu), Gianyar (Ubud), Klungkung, Bangli, Tabanan, Buleleng (Singaraja), dan Jembrana.
+          </p>
+        </div>
+      </div>
+    </section>
 
-                <p class="eyebrow">
-                    MASALAH YANG SERING TERJADI
-                </p>
+    <!-- 6. TESTIMONI PELANGGAN -->
+    <section class="service-section">
+      <div class="section-title">
+        <p class="eyebrow">TESTIMONI PELANGGAN</p>
+        <h2>Apa Kata Mereka Tentang Layanan Kami?</h2>
+        <p>Pengalaman nyata pemilik properti, villa, dan pelaku usaha di Bali yang mempercayakan jaringannya kepada kami.</p>
+      </div>
 
-                <h2>
-                    WiFi Lambat Tidak Selalu Berarti Internet Anda Buruk
-                </h2>
-
+      <div class="testimonial-grid">
+        {testimonials.map((testi) => (
+          <article class="testimonial-card">
+            <div class="testimonial-stars">{"★".repeat(testi.bintang)}</div>
+            <p class="testimonial-text">"{testi.isi}"</p>
+            <div class="testimonial-author">
+              <strong>{testi.nama}</strong>
+              <span>{testi.usaha} — {testi.lokasi}</span>
             </div>
+          </article>
+        ))}
+      </div>
+    </section>
 
+    <!-- 7. FAQ (SEBELUM FINAL CTA) -->
+    <section class="service-section">
+      <div class="section-title">
+        <p class="eyebrow">TANYA JAWAB</p>
+        <h2>Pertanyaan yang Sering Diajukan (FAQ)</h2>
+        <p>Hal-hal yang sering ditanyakan seputar layanan instalasi WiFi dan setting MikroTik di Bali.</p>
+      </div>
 
-            <div class="service-grid-3">
-
-                <article class="service-info-card">
-                    <h3>Jangkauan Tidak Merata</h3>
-
-                    <p>
-                        Area tertentu sulit mendapatkan sinyal
-                        WiFi yang kuat karena posisi router,
-                        struktur bangunan, atau luas area.
-                    </p>
-                </article>
-
-
-                <article class="service-info-card">
-                    <h3>Banyak Pengguna</h3>
-
-                    <p>
-                        Banyak perangkat yang terhubung secara
-                        bersamaan dapat membuat koneksi terasa
-                        lambat dan tidak stabil.
-                    </p>
-                </article>
-
-
-                <article class="service-info-card">
-                    <h3>Jaringan Tidak Terencana</h3>
-
-                    <p>
-                        Instalasi jaringan yang tidak dirancang
-                        dengan baik dapat menimbulkan masalah
-                        koneksi dan performa.
-                    </p>
-                </article>
-
+      <div class="faq-container">
+        {faqList.map((faq) => (
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>{faq.q}</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p>{faq.a}</p>
             </div>
+          </details>
+        ))}
+      </div>
+    </section>
 
-        </section>
+    <!-- 8. FINAL CTA FOOTER -->
+    <section class="cta-section">
+      <h2>Punya Kendala WiFi di Rumah, Villa, atau Usaha Anda?</h2>
+      <p>
+        Konsultasikan kebutuhan instalasi jaringan internet Anda bersama teknisi <strong>Bali Nusa Media</strong>. Layanan responsif dan bergaransi.
+      </p>
+      <a
+        href="https://wa.me/6285168981959?text=Halo%20Bali%20Nusa%20Media,%20saya%20mau%20jadwalkan%20pemasangan%20WiFi"
+        class="btn-cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Hubungi Kami via WhatsApp
+      </a>
+    </section>
 
-        <section class="service-section">
-
-            <div class="section-title">
-                <p class="eyebrow">
-                    DAFTAR PAKET
-                </p>
-                <h2>
-                    Pilihan Paket Jaringan & WiFi Terbaik
-                </h2>
-                <p>
-                    Pilih paket perangkat jaringan yang sesuai dengan skala kebutuhan properti Anda.
-                </p>
-            </div>
-
-            <div class="custom-product-grid">
-                {networkProducts.map((item) => (
-                    <div class="custom-product-card">
-                        <div>
-                            <div class="custom-product-img-wrap">
-                                <img src={item.gambar} alt={item.nama_paket} loading="lazy" />
-                            </div>
-                            <span class="custom-badge">{item.kategori}</span>
-                            <h3 class="custom-product-title">{item.nama_paket}</h3>
-                            <p class="custom-product-desc">{item.deskripsi}</p>
-                            <p class="custom-product-spec">Spesifikasi: {item.spesifikasi}</p>
-                        </div>
-
-                        <div class="custom-product-footer">
-                            <div class="custom-price-wrap">
-                                <span class="custom-price">{item.harga}</span>
-                                {item.harga_coret && <span class="custom-price-old">{item.harga_coret}</span>}
-                            </div>
-                            
-                            <a 
-                                href={`https://wa.me/${item.whatsapp}?text=Halo,%20saya%20tertarik%20dengan%20${encodeURIComponent(item.nama_paket)}`} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                class="custom-btn-whatsapp"
-                            >
-                                Pesan via WhatsApp
-                            </a>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-        </section>
-
-
-        <section class="service-section">
-
-            <div class="section-title">
-
-                <p class="eyebrow">
-                    PROSES KERJA
-                </p>
-
-                <h2>
-                    Dari Konsultasi Sampai Instalasi
-                </h2>
-
-            </div>
-
-
-            <div class="service-process">
-
-                <div>
-                    <span>01</span>
-                    <h3>Konsultasi</h3>
-                    <p>
-                        Memahami kebutuhan dan kondisi lokasi.
-                    </p>
-                </div>
-
-                <div>
-                    <span>02</span>
-                    <h3>Survey</h3>
-                    <p>
-                        Menentukan kebutuhan perangkat dan
-                        rancangan jaringan.
-                    </p>
-                </div>
-
-                <div>
-                    <span>03</span>
-                    <h3>Instalasi</h3>
-                    <p>
-                        Pemasangan dan konfigurasi jaringan.
-                    </p>
-                </div>
-
-                <div>
-                    <span>04</span>
-                    <h3>Pengujian</h3>
-                    <p>
-                        Memastikan jaringan berjalan sesuai
-                        kebutuhan yang telah disepakati.
-                    </p>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <section class="cta-section">
-
-            <h2>
-                Butuh WiFi untuk Rumah atau Bisnis?
-            </h2>
-
-            <p>
-                Konsultasikan kebutuhan jaringan Anda
-                dengan Bali Nusa Media.
-            </p>
-
-            <a
-                href="https://wa.me/6285168981959"
-                class="btn-cta"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Konsultasi via WhatsApp
-            </a>
-
-        </section>
-
-    </main>
-
+  </main>
 </MainLayout>
-
-<!-- CSS KARTU PRODUK (MENGGUNAKAN DESIGN SYSTEM GLOBAL) -->
-<style>
-  .custom-product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 28px;
-    margin-top: 2rem;
-  }
-
-  .custom-product-card {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: var(--shadow);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-
-  .custom-product-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-hover);
-  }
-
-  .custom-product-img-wrap {
-    background: var(--sand);
-    height: 190px;
-    border-radius: calc(var(--radius) - 4px);
-    overflow: hidden;
-    margin-bottom: 16px;
-  }
-
-  .custom-product-img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .custom-badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    background: var(--sand);
-    color: var(--blue);
-    padding: 4px 10px;
-    border-radius: 20px;
-    margin-bottom: 10px;
-  }
-
-  .custom-product-title {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 8px;
-    line-height: 1.3;
-  }
-
-  .custom-product-desc {
-    font-size: 0.9rem;
-    color: var(--ink-soft);
-    margin-bottom: 10px;
-    line-height: 1.5;
-  }
-
-  .custom-product-spec {
-    font-size: 0.82rem;
-    color: #6b7280;
-    font-style: italic;
-    margin-bottom: 20px;
-  }
-
-  .custom-product-footer {
-    border-top: 1px solid var(--line);
-    padding-top: 16px;
-    margin-top: auto;
-  }
-
-  .custom-price-wrap {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 14px;
-  }
-
-  .custom-price {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #dc2626;
-  }
-
-  .custom-price-old {
-    font-size: 0.85rem;
-    color: #9ca3af;
-    text-decoration: line-through;
-  }
-
-  .custom-btn-whatsapp {
-    display: block;
-    width: 100%;
-    background-color: #16a34a;
-    color: #ffffff;
-    text-align: center;
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
-  }
-
-  .custom-btn-whatsapp:hover {
-    background-color: #15803d;
-  }
-</style>

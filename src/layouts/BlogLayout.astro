@@ -1,0 +1,28 @@
+---
+import MainLayout from "./MainLayout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonical?: string;
+}
+
+const {
+  title,
+  description,
+  image,
+  canonical,
+} = Astro.props;
+---
+
+<MainLayout
+  title={title}
+  description={description}
+  image={image}
+  canonical={canonical}
+>
+  <article class="blog-article">
+    <slot />
+  </article>
+</MainLayout>
