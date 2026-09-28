@@ -1,274 +1,372 @@
----
-const whatsapp = "6285168981959";
----
-
 <header class="site-header">
+  <div class="header-container">
+    
+    <!-- BRAND / LOGO TULISAN -->
+    <a href="/" class="brand-text-logo" aria-label="Bali Nusa Media - Beranda">
+      <span class="logo-title">Bali Nusa <span class="accent-text">Media</span></span>
+      <span class="logo-subtitle">Website • Google Ads • Meta Ads</span>
+    </a>
 
-    <div class="hub-container header-wrapper">
+    <!-- TOMBOL HAMBURGER MOBILE -->
+    <button 
+      type="button" 
+      class="nav-toggle" 
+      id="mobile-nav-toggle" 
+      aria-label="Buka menu navigasi" 
+      aria-expanded="false" 
+      aria-controls="primary-nav"
+    >
+      <span class="bar bar-1"></span>
+      <span class="bar bar-2"></span>
+      <span class="bar bar-3"></span>
+    </button>
 
-        <a
-            href="/"
-            class="logo-link"
-            aria-label="Bali Nusa Media - Beranda"
-        >
+    <!-- NAVIGASI UTAMA -->
+    <nav class="nav-menu" id="primary-nav" aria-label="Navigasi Utama">
+      <a href="/" class="nav-item">Beranda</a>
+      <a href="/#paket" class="nav-item">Paket Layanan</a>
+      <a href="/#portofolio" class="nav-item">Portofolio</a>
+      <a href="/tentang-kami/" class="nav-item">Tentang Kami</a>
+      <a href="/blog/" class="nav-item">Blog</a>
+      <a href="/kontak/" class="nav-item">Kontak</a>
 
-            <img
-                src="/assets/img/logo.webp"
-                alt="Logo Bali Nusa Media"
-                width="180"
-                height="80"
-            />
+      <!-- TOMBOL CTA CEPAT -->
+      <a 
+        href="https://wa.me/6285168981959?text=Halo%20Bali%20Nusa%20Media,%20saya%20ingin%20konsultasi%20layanan%20website%20dan%20iklan" 
+        class="btn-nav-cta"
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
+        Konsultasi WA
+      </a>
+    </nav>
 
-        </a>
-
-
-        <button
-            type="button"
-            class="mobile-menu-toggle"
-            id="mobile-menu-btn"
-            aria-label="Buka menu"
-            aria-expanded="false"
-            aria-controls="site-nav"
-        >
-
-            <span class="hamburger-icon">
-                <span></span>
-                <span></span>
-                <span></span>
-            </span>
-
-        </button>
-
-        <nav
-            class="site-nav"
-            id="site-nav"
-            aria-label="Navigasi utama"
-        >
-
-
-
-            <div class="nav-dropdown">
-
-                <button
-                    type="button"
-                    class="nav-dropdown-toggle"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    aria-controls="services-menu"
-                >
-
-                    <span>
-                        Layanan
-                    </span>
-
-                    <span
-                        class="nav-arrow"
-                        aria-hidden="true"
-                    >
-                        ▾
-                    </span>
-
-                </button>
-
-
-                <div
-                    class="nav-dropdown-menu"
-                    id="services-menu"
-                >
-
-                    <a href="/internet/">
-
-                        <strong>
-                            Internet & WiFi
-                        </strong>
-
-                        <span>
-                            Solusi jaringan & konektivitas
-                        </span>
-
-                    </a>
-
-
-                    <a href="/cctv/">
-
-                        <strong>
-                            CCTV
-                        </strong>
-
-                        <span>
-                            Sistem keamanan & monitoring
-                        </span>
-
-                    </a>
-
-
-                    <a href="/website/">
-
-                        <strong>
-                            Website
-                        </strong>
-
-                        <span>
-                            Pembuatan website bisnis
-                        </span>
-
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <a href="/tentang-kami/">
-                Tentang Kami
-            </a>
-
-
-
-            <a href="/blog/">
-                Blog
-            </a>
-
-
-
-            <a href="/kontak/">
-                Kontak
-            </a>
-
-
-            <a
-                href={`https://wa.me/${whatsapp}`}
-                class="btn-cta"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Konsultasi
-            </a>
-
-        </nav>
-
-    </div>
-
+  </div>
 </header>
 
+<style>
+  /* Header Base */
+  .site-header {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: all 0.25s ease;
+  }
+
+  .header-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Text Logo */
+  .brand-text-logo {
+    display: inline-flex;
+    flex-direction: column;
+    text-decoration: none;
+    line-height: 1.15;
+  }
+
+  .brand-text-logo .logo-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #0f172a;
+  }
+
+  .brand-text-logo .accent-text {
+    color: #0284c7;
+  }
+
+  .brand-text-logo .logo-subtitle {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-top: 2px;
+  }
+
+  /* Navigation Links */
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-item {
+    font-size: 0.925rem;
+    font-weight: 600;
+    color: #334155;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    padding: 0.25rem 0;
+  }
+
+  .nav-item:hover {
+    color: #0284c7;
+  }
+
+  /* Dropdown System */
+  .dropdown-wrapper {
+    position: relative;
+  }
+
+  .dropdown-trigger {
+    background: none;
+    border: none;
+    padding: 0.25rem 0;
+    font-family: inherit;
+    font-size: 0.925rem;
+    font-weight: 600;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .dropdown-trigger:hover {
+    color: #0284c7;
+  }
+
+  .dropdown-icon {
+    transition: transform 0.2s ease;
+  }
+
+  .dropdown-wrapper:hover .dropdown-icon,
+  .dropdown-wrapper.is-open .dropdown-icon {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 290px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 0.65rem;
+    box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.1);
+    margin-top: 0.65rem;
+    z-index: 105;
+  }
+
+  /* Jembatan hover agar kursor tidak lepas saat bergeser ke menu */
+  .dropdown-menu::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 0;
+    width: 100%;
+    height: 12px;
+  }
+
+  .dropdown-wrapper:hover .dropdown-menu,
+  .dropdown-wrapper.is-open .dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    animation: fadeInMenu 0.15s ease-out;
+  }
+
+  @keyframes fadeInMenu {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .dropdown-item:hover {
+    background: #f8fafc;
+  }
+
+  .menu-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .menu-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .menu-text strong {
+    font-size: 0.875rem;
+    color: #0f172a;
+    line-height: 1.25;
+  }
+
+  .menu-text span {
+    font-size: 0.725rem;
+    color: #64748b;
+  }
+
+  /* CTA Button */
+  .btn-nav-cta {
+    background-color: #0284c7;
+    color: #ffffff !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.6rem 1.25rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .btn-nav-cta:hover {
+    background-color: #0369a1;
+    transform: translateY(-1px);
+  }
+
+  /* Mobile Toggle with Morphing to 'X' */
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .nav-toggle .bar {
+    width: 22px;
+    height: 2px;
+    background-color: #0f172a;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+    border-radius: 2px;
+  }
+
+  .nav-toggle.is-active .bar-1 {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-toggle.is-active .bar-2 {
+    opacity: 0;
+  }
+
+  .nav-toggle.is-active .bar-3 {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Responsive Rules */
+  @media (max-width: 860px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    .brand-text-logo .logo-title {
+      font-size: 1.2rem;
+    }
+
+    .brand-text-logo .logo-subtitle {
+      font-size: 0.62rem;
+    }
+
+    .nav-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 1.25rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+      box-shadow: 0 14px 24px -6px rgba(15, 23, 42, 0.08);
+    }
+
+    .nav-menu.is-active {
+      display: flex;
+    }
+
+    .dropdown-wrapper {
+      width: 100%;
+    }
+
+    .dropdown-trigger {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .dropdown-menu {
+      position: static;
+      width: 100%;
+      box-shadow: none;
+      border: 1px solid #f1f5f9;
+      margin-top: 0.75rem;
+    }
+
+    .btn-nav-cta {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
 
 <script>
-    const menuBtn =
-        document.getElementById("mobile-menu-btn");
+  const toggleBtn = document.getElementById('mobile-nav-toggle');
+  const navMenu = document.getElementById('primary-nav');
+  const dropdownWrappers = document.querySelectorAll('.dropdown-wrapper');
 
-    const siteNav =
-        document.getElementById("site-nav");
+  // Toggle mobile navigation
+  toggleBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+    toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
+    toggleBtn.classList.toggle('is-active');
+    navMenu?.classList.toggle('is-active');
+  });
 
-    const dropdown =
-        document.querySelector(".nav-dropdown");
-
-    const dropdownButton =
-        document.querySelector(".nav-dropdown-toggle");
-
-
-    menuBtn?.addEventListener("click", () => {
-
-        const isOpen =
-            menuBtn.getAttribute("aria-expanded") === "true";
-
-        menuBtn.setAttribute(
-            "aria-expanded",
-            String(!isOpen)
-        );
-
-        siteNav?.classList.toggle(
-            "is-active",
-            !isOpen
-        );
-
-        document.body.classList.toggle(
-            "menu-open",
-            !isOpen
-        );
-
+  // Toggle dropdown on mobile
+  dropdownWrappers.forEach(wrapper => {
+    const trigger = wrapper.querySelector('.dropdown-trigger');
+    trigger?.addEventListener('click', (e) => {
+      if (window.innerWidth <= 860) {
+        e.preventDefault();
+        e.stopPropagation();
+        wrapper.classList.toggle('is-open');
+      }
     });
+  });
 
-
-    dropdownButton?.addEventListener(
-        "click",
-        () => {
-
-            const isOpen =
-                dropdownButton.getAttribute(
-                    "aria-expanded"
-                ) === "true";
-
-            dropdownButton.setAttribute(
-                "aria-expanded",
-                String(!isOpen)
-            );
-
-            dropdown?.classList.toggle(
-                "is-open",
-                !isOpen
-            );
-
-        }
-    );
-
-
-    siteNav
-        ?.querySelectorAll("a")
-        .forEach((link) => {
-
-            link.addEventListener(
-                "click",
-                () => {
-
-                    menuBtn?.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                    siteNav?.classList.remove(
-                        "is-active"
-                    );
-
-                    document.body.classList.remove(
-                        "menu-open"
-                    );
-
-                }
-            );
-
-        });
-
-
-    document.addEventListener(
-        "keydown",
-        (event) => {
-
-            if (event.key !== "Escape") {
-                return;
-            }
-
-            menuBtn?.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            siteNav?.classList.remove(
-                "is-active"
-            );
-
-            dropdownButton?.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            dropdown?.classList.remove(
-                "is-open"
-            );
-
-            document.body.classList.remove(
-                "menu-open"
-            );
-
-        }
-    );
+  // Close menus when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!navMenu?.contains(e.target as Node) && !toggleBtn?.contains(e.target as Node)) {
+      navMenu?.classList.remove('is-active');
+      toggleBtn?.classList.remove('is-active');
+      toggleBtn?.setAttribute('aria-expanded', 'false');
+      dropdownWrappers.forEach(w => w.classList.remove('is-open'));
+    }
+  });
 </script>

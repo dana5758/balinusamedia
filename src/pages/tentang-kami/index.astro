@@ -1,223 +1,649 @@
 ---
+// src/pages/tentang-kami/index.astro (atau src/pages/tentang-kami.astro)
 import MainLayout from "../../layouts/MainLayout.astro";
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Bali Nusa Media",
+  "image": "https://balinusamedia.com/assets/img/hero.webp",
+  "telephone": "+6285168981959",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Perum Grand Park Blok C No. 8, Subagan",
+    "addressLocality": "Karangasem",
+    "addressRegion": "Bali",
+    "addressCountry": "ID"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -8.4485,
+    "longitude": 115.6128
+  },
+  "url": "https://balinusamedia.com/tentang-kami/",
+  "description": "Profil Bali Nusa Media: Penyedia solusi teknologi infrastruktur WiFi/LAN, instalasi CCTV, kelistrikan panel, pembuatan website kencang, dan iklan digital di Bali."
+};
 ---
 
 <MainLayout
-    title="Tentang Bali Nusa Media | Internet, CCTV & Website Karangasem"
-    description="Kenal lebih dekat dengan Bali Nusa Media, penyedia layanan Internet & WiFi, CCTV, dan Website untuk masyarakat dan bisnis di Karangasem, Bali."
+  title="Tentang Bali Nusa Media | Solusi Infrastruktur & Pemasaran Digital Bali"
+  description="Mengenal Bali Nusa Media: Mitra teknologi terpercaya untuk instalasi jaringan WiFi, kamera CCTV, kelistrikan tertata, website modern, dan digital ads di Karangasem serta seluruh Bali."
 >
 
-    <main class="hub-container service-page">
-
-        <section class="service-hero">
-
-            <div class="service-hero-text">
-
-                <p class="eyebrow">
-                    TENTANG KAMI
-                </p>
-
-                <h1>
-                    Bali Nusa Media
-                </h1>
-
-                <p>
-                    Bali Nusa Media merupakan vendor teknologi
-                    yang berfokus pada Internet & WiFi, CCTV,
-                    dan Website untuk kebutuhan rumah,
-                    UMKM, villa, kantor, dan bisnis.
-                </p>
-
-                <a
-                    href="/kontak/"
-                    class="btn-cta"
-                >
-                    Hubungi Kami
-                </a>
-
-            </div>
-
-
-            <div class="service-hero-image">
-
-                <img
-                    src="/assets/img/hero.webp"
-                    alt="Bali Nusa Media"
-                >
-
-            </div>
-
-        </section>
-
-
-        <section class="service-section">
-
-            <div class="section-title">
-
-                <p class="eyebrow">
-                    TENTANG BALI NUSA MEDIA
-                </p>
-
-                <h2>
-                    Membangun Solusi Teknologi yang
-                    Bisa Digunakan dalam Jangka Panjang
-                </h2>
-
-            </div>
-
-
-            <div class="service-grid-2">
-
-                <article class="service-info-card">
-
-                    <h3>
-                        Internet & WiFi
-                    </h3>
-
-                    <p>
-                        Membantu kebutuhan konektivitas
-                        rumah dan bisnis dengan perencanaan
-                        jaringan yang sesuai kondisi lokasi.
-                    </p>
-
-                </article>
-
-
-                <article class="service-info-card">
-
-                    <h3>
-                        CCTV
-                    </h3>
-
-                    <p>
-                        Membantu menyediakan sistem
-                        pemantauan untuk rumah dan
-                        berbagai jenis usaha.
-                    </p>
-
-                </article>
-
-
-                <article class="service-info-card">
-
-                    <h3>
-                        Website
-                    </h3>
-
-                    <p>
-                        Membantu bisnis memiliki website
-                        sebagai identitas dan sarana
-                        digital untuk menjangkau pelanggan.
-                    </p>
-
-                </article>
-
-
-                <article class="service-info-card">
-
-                    <h3>
-                        Fokus pada Bisnis Lokal
-                    </h3>
-
-                    <p>
-                        Kami membangun layanan dengan fokus
-                        pada kebutuhan masyarakat dan pelaku
-                        usaha di Karangasem.
-                    </p>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <section class="service-section service-section-soft">
-
-            <div class="section-title">
-
-                <p class="eyebrow">
-                    NILAI KAMI
-                </p>
-
-                <h2>
-                    Prinsip dalam Melayani Pelanggan
-                </h2>
-
-            </div>
-
-
-            <div class="service-grid-3">
-
-                <article class="service-info-card">
-
-                    <h3>
-                        Jelas
-                    </h3>
-
-                    <p>
-                        Menjelaskan kebutuhan, solusi,
-                        dan proses pekerjaan dengan jelas.
-                    </p>
-
-                </article>
-
-
-                <article class="service-info-card">
-
-                    <h3>
-                        Rapi
-                    </h3>
-
-                    <p>
-                        Mengutamakan hasil instalasi,
-                        struktur, dan tampilan yang rapi.
-                    </p>
-
-                </article>
-
-
-                <article class="service-info-card">
-
-                    <h3>
-                        Berkelanjutan
-                    </h3>
-
-                    <p>
-                        Website dan sistem jaringan
-                        dirancang agar dapat dikembangkan
-                        sesuai kebutuhan bisnis.
-                    </p>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <section class="cta-section">
-
-            <h2>
-                Ingin Mengenal Bali Nusa Media Lebih Dekat?
-            </h2>
-
-            <p>
-                Hubungi kami dan ceritakan kebutuhan teknologi
-                untuk rumah atau bisnis Anda.
-            </p>
-
-            <a
-                href="https://wa.me/6285168981959"
-                class="btn-cta"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Konsultasi via WhatsApp
-            </a>
-
-        </section>
-
-    </main>
-
+  <!-- Schema Markup JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+
+  <main class="about-page-container">
+
+    <!-- 1. HERO SECTION -->
+    <section class="service-hero">
+      <div class="service-hero-text">
+        <div class="eyebrow-pill">
+          <span class="dot-active"></span> PROFIL BALI NUSA MEDIA
+        </div>
+        <h1>
+          Membangun Fondasi Teknologi yang Andal, Rapi, &amp; Berkelanjutan
+        </h1>
+        <p class="hero-desc">
+          <strong>Bali Nusa Media</strong> hadir sebagai mitra terpadu kebutuhan fisik lapangan dan percepatan digital bisnis di Bali. Dari instalasi jaringan kabel bawah dan udara yang terlindungi, keamanan pemantauan CCTV 24 jam, sistem kelistrikan tertata, hingga pengembangan website performa tinggi yang siap mendatangkan pelanggan.
+        </p>
+
+        <div class="hero-usp-row">
+          <div class="usp-badge"><span>✓</span> Standar Lapangan Presisi</div>
+          <div class="usp-badge"><span>✓</span> Berbasis di Karangasem</div>
+          <div class="usp-badge"><span>✓</span> Siap Lintas Kabupaten di Bali</div>
+        </div>
+
+        <div class="hero-cta-group">
+          <a
+            href="https://wa.me/6285168981959?text=Halo%20Bali%20Nusa%20Media,%20saya%20ingin%20berkonsultasi"
+            class="btn-primary-wa"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Konsultasi via WhatsApp
+          </a>
+          <a href="#pilar-layanan" class="btn-secondary-action">
+            Eksplorasi Layanan Kami
+          </a>
+        </div>
+      </div>
+
+      <div class="service-hero-image">
+        <img
+          src="/assets/img/hero.webp"
+          alt="Tentang Bali Nusa Media Karangasem Bali"
+          width="600"
+          height="400"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </section>
+
+    <!-- 2. CERITA & KOMITMEN -->
+    <section class="about-section">
+      <div class="section-heading">
+        <span class="sub-label">LATAR BELAKANG KAMI</span>
+        <h2>Solusi Menyeluruh untuk Properti &amp; Usaha Anda</h2>
+        <p>
+          Banyak pemilik properti dan pelaku usaha di Bali menghadapi kendala teknis yang terpecah-pecah: teknisi internet berbeda dengan teknisi kamera, kabel dipasang serampangan tanpa pipa pelindung, dan website usaha yang dibangun lambat serta sepi pengunjung.
+        </p>
+      </div>
+
+      <div class="mission-banner">
+        <div class="mission-text">
+          <h3>Pendekatan Kami: Integrasi Total dari Hulu ke Hilir</h3>
+          <p>
+            Kami menyatukan kebutuhan infrastruktur perangkat keras dan kehadiran digital. Kami memastikan aliran listrik stabil, jalur data kabel LAN memakai tembaga murni tanpa *drop*, kamera pengawas merekam jelas tanpa titik buta, serta media promosi online (Website &amp; Iklan Digital) Anda aktif menghasilkan omzet harian.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PILAR UTAMA LAYANAN KAMI -->
+    <section id="pilar-layanan" class="about-section">
+      <div class="section-heading">
+        <span class="sub-label">CAKUPAN BIDANG KERJA</span>
+        <h2>5 Layanan Unggulan Bali Nusa Media</h2>
+        <p>Setiap layanan ditangani dengan standar prosedur teknis yang jelas dan bergaransi.</p>
+      </div>
+
+      <div class="services-overview-grid">
+        <!-- 1. WiFi -->
+        <article class="service-block">
+          <div class="block-icon">📶</div>
+          <h3><a href="/wifi/">WiFi &amp; Jaringan LAN</a></h3>
+          <p>
+            Setup Access Point plafon dan outdoor untuk vila, homestay, rumah, dan kafe. Pemasangan router MikroTik untuk pembagian bandwidth adil, manajemen voucher kos, dan roaming mulus tanpa terputus.
+          </p>
+          <a href="/wifi/" class="block-link">Lihat Paket WiFi &rarr;</a>
+        </article>
+
+        <!-- 2. CCTV -->
+        <article class="service-block">
+          <div class="block-icon">📷</div>
+          <h3><a href="/cctv/">Sistem Kamera CCTV</a></h3>
+          <p>
+            Instalasi kamera IP PoE dan Analog HD beresolusi tajam siang-malam (ColorVu Night Vision). Menjaga perimeter vila, toko, kasir, dan garasi rumah dengan akses pemantauan real-time dari smartphone.
+          </p>
+          <a href="/cctv/" class="block-link">Lihat Paket CCTV &rarr;</a>
+        </article>
+
+        <!-- 3. Listrik -->
+        <article class="service-block">
+          <div class="block-icon">⚡</div>
+          <h3><a href="/listrik/">Instalasi Listrik &amp; Panel</a></h3>
+          <p>
+            Perapian boks sekring panel MCB, pembagian jalur beban indekos (sub-meter), jalur tertutup pipa konduit PVC tahan api, serta pemasangan grounding penangkal lonjakan arus petir.
+          </p>
+          <a href="/listrik/" class="block-link">Lihat Paket Kelistrikan &rarr;</a>
+        </article>
+
+        <!-- 4. Website -->
+        <article class="service-block">
+          <div class="block-icon">💻</div>
+          <h3><a href="/website/">Web Development &amp; SEO</a></h3>
+          <p>
+            Pembuatan website modern dengan skor kecepatan Google maksimal (skor hijau). Dilengkapi struktur schema On-Page SEO lokal dan integrasi tombol reservasi langsung ke WhatsApp bisnis.
+          </p>
+          <a href="/website/" class="block-link">Lihat Paket Website &rarr;</a>
+        </article>
+
+        <!-- 5. Ads -->
+        <article class="service-block">
+          <div class="block-icon">🎯</div>
+          <h3><a href="/ads/">Google Ads &amp; Meta Ads</a></h3>
+          <p>
+            Manajemen iklan digital tertarget ke wilayah Bali maupun pasar wisatawan luar pulau. Menangkap calon pembeli yang sedang butuh jasa secara mendesak di Google serta membangun interaksi visual di Instagram.
+          </p>
+          <a href="/ads/" class="block-link">Lihat Paket Iklan &rarr;</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. PRINSIP KERJA (NILAI UTAMA) -->
+    <section class="about-section values-box">
+      <div class="section-heading">
+        <span class="sub-label">PRINSIP &amp; NILAI KAMI</span>
+        <h2>Mengapa Klien Nyaman Bekerja Sama dengan Kami?</h2>
+        <p>Prinsip dasar yang kami pegang teguh di setiap proyek yang kami tangani.</p>
+      </div>
+
+      <div class="values-grid">
+        <article class="value-card">
+          <div class="value-step">01</div>
+          <h3>Transparan &amp; Jelas</h3>
+          <p>
+            Tidak ada biaya tersembunyi. Kami menjelaskan spesifikasi perangkat keras apa adanya (kabel tembaga murni vs CCA, resolusi lensa kamera riil, dan komponen kelistrikan standar SNI/PUIL).
+          </p>
+        </article>
+
+        <article class="value-card">
+          <div class="value-step">02</div>
+          <h3>Estetika &amp; Kerapian</h3>
+          <p>
+            Pengerjaan di vila dan rumah hunian menuntut hasil akhir yang sedap dipandang. Kami menghindari kabel yang menggelantung semrawut dan selalu mengutamakan pelindung pipa konduit rapi.
+          </p>
+        </article>
+
+        <article class="value-card">
+          <div class="value-step">03</div>
+          <h3>Edukasi &amp; Bertanggung Jawab</h3>
+          <p>
+            Setelah pengerjaan selesai, kami membimbing Anda cara memantau CCTV dari ponsel, cara mengelola router, hingga menyediakan garansi purna jual untuk ketenangan jangka panjang Anda.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. WILAYAH OPERASIONAL -->
+    <section class="about-section coverage-box">
+      <div class="section-heading">
+        <span class="sub-label">JANGKAUAN TEKNISI</span>
+        <h2>Pusat Operasional di Karangasem, Melayani Seluruh Bali</h2>
+        <p>
+          Berlokasi di Subagan, Amlapura, teknisi kami siap datang langsung untuk survei lokasi dan instalasi ke seluruh kabupaten di Bali.
+        </p>
+      </div>
+
+      <div class="coverage-grid">
+        <div class="coverage-item">
+          <h3>Wilayah Utama (Karangasem &amp; Sekitarnya):</h3>
+          <p>Amlapura, Candidasa, Amed, Tulamben, Padangbai, Manggis, Abang, Bebandem, Rendang, Selat, Kubu, dan Sidemen.</p>
+        </div>
+        <div class="coverage-item">
+          <h3>Wilayah Lintas Kabupaten di Bali:</h3>
+          <p>Denpasar, Badung (Kuta, Seminyak, Canggu), Gianyar (Ubud), Klungkung, Bangli, Tabanan, Buleleng (Singaraja), dan Jembrana.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. FINAL CTA BANNER -->
+    <section class="about-cta-banner">
+      <h2>Punya Pertanyaan atau Rencana Proyek Baru?</h2>
+      <p>
+        Konsultasikan kebutuhan infrastruktur fisik atau pemasaran digital properti Anda bersama <strong>Bali Nusa Media</strong>. Kami siap membantu dari perencanaan hingga pengerjaan tuntas.
+      </p>
+      <div class="cta-actions">
+        <a
+          href="https://wa.me/6285168981959?text=Halo%20Bali%20Nusa%20Media,%20saya%20ingin%20konsultasi%20proyek"
+          class="btn-cta-large"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Hubungi Kami via WhatsApp
+        </a>
+        <a href="/kontak/" class="btn-cta-outline">
+          Lihat Halaman Kontak
+        </a>
+      </div>
+    </section>
+
+  </main>
 </MainLayout>
+
+<style>
+  /* Layout Dasar */
+  .about-page-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+    font-family: inherit;
+    color: #1e293b;
+  }
+
+  .about-section {
+    padding: 3.5rem 0;
+  }
+
+  .section-heading {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .sub-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #0284c7;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(1.6rem, 3vw, 2.15rem);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-heading p {
+    font-size: 1rem;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  /* 1. Hero Section */
+  .service-hero {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2.5rem;
+    align-items: center;
+    padding: 2.5rem 0 3.5rem;
+  }
+
+  .eyebrow-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #0284c7;
+    background: #e0f2fe;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+  }
+
+  .dot-active {
+    width: 6px;
+    height: 6px;
+    background-color: #0284c7;
+    border-radius: 50%;
+  }
+
+  .service-hero-text h1 {
+    font-size: clamp(1.85rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-usp-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .usp-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #334155;
+    background: #f1f5f9;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+  }
+
+  .usp-badge span {
+    color: #10b981;
+    font-weight: bold;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary-wa {
+    background-color: #0284c7;
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-primary-wa:hover {
+    background-color: #0369a1;
+  }
+
+  .btn-secondary-action {
+    background-color: #f1f5f9;
+    color: #334155 !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-secondary-action:hover {
+    background-color: #e2e8f0;
+  }
+
+  .service-hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.12);
+    object-fit: cover;
+  }
+
+  /* 2. Mission Banner */
+  .mission-banner {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .mission-text h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 0.85rem;
+  }
+
+  .mission-text p {
+    font-size: 1rem;
+    color: #475569;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* 3. Services Overview Grid */
+  .services-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-block {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .service-block:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08);
+  }
+
+  .block-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .service-block h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-block h3 a {
+    color: #0f172a;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .service-block h3 a:hover {
+    color: #0284c7;
+  }
+
+  .service-block p {
+    font-size: 0.9rem;
+    color: #64748b;
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+  }
+
+  .block-link {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #0284c7;
+    text-decoration: none;
+  }
+
+  .block-link:hover {
+    text-decoration: underline;
+  }
+
+  /* 4. Values Box */
+  .values-box {
+    background: #f8fafc;
+    border-radius: 20px;
+    padding: 3.5rem 1.75rem;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .value-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 1.75rem;
+  }
+
+  .value-step {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #cbd5e1;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .value-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+  }
+
+  .value-card p {
+    font-size: 0.9rem;
+    color: #64748b;
+    line-height: 1.55;
+  }
+
+  /* 5. Coverage Box */
+  .coverage-box {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 3rem 1.75rem;
+  }
+
+  .coverage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .coverage-item {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .coverage-item h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.4rem;
+  }
+
+  .coverage-item p {
+    font-size: 0.9rem;
+    color: #475569;
+    line-height: 1.5;
+  }
+
+  /* 6. Final CTA Banner */
+  .about-cta-banner {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-radius: 18px;
+    padding: 3.5rem 2rem;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .about-cta-banner h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    margin-bottom: 0.85rem;
+  }
+
+  .about-cta-banner p {
+    font-size: 1.05rem;
+    color: #cbd5e1;
+    max-width: 620px;
+    margin: 0 auto 2rem;
+    line-height: 1.5;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-cta-large {
+    background: #0284c7;
+    color: #ffffff !important;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.95rem 2rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s ease;
+  }
+
+  .btn-cta-large:hover {
+    background: #0369a1;
+  }
+
+  .btn-cta-outline {
+    background: transparent;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.95rem 2rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .btn-cta-outline:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #ffffff;
+  }
+
+  /* Responsive Rules */
+  @media (max-width: 768px) {
+    .service-hero {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 1.5rem 0 2rem;
+    }
+
+    .about-section {
+      padding: 2.5rem 0;
+    }
+
+    .cta-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+</style>

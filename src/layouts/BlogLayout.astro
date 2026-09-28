@@ -1,28 +1,592 @@
 ---
-import MainLayout from "./MainLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title: string;
   description: string;
+  publishDate: string;
+  updatedDate?: string;
+  category: string;
   image?: string;
-  canonical?: string;
+  readTime?: string;
+  slug: string;
 }
 
 const {
   title,
   description,
-  image,
-  canonical,
+  publishDate,
+  updatedDate = publishDate,
+  category,
+  image = "/assets/img/hero.webp",
+  readTime = "5 menit baca",
+  slug
 } = Astro.props;
+
+const canonicalURL = `https://balinusamedia.com/blog/${slug}/`;
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "image": image.startsWith("http") ? image : `https://balinusamedia.com${image}`,
+  "datePublished": publishDate,
+  "dateModified": updatedDate,
+  "author": {
+    "@type": "Organization",
+    "name": "Bali Nusa Media",
+    "url": "https://balinusamedia.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "PT. Bali Nusa Media",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://balinusamedia.com/assets/img/logo.webp"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalURL
+  }
+};
 ---
 
-<MainLayout
-  title={title}
-  description={description}
-  image={image}
-  canonical={canonical}
->
-  <article class="blog-article">
-    <slot />
-  </article>
-</MainLayout>
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | Blog Bali Nusa Media</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Schema Markup JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+  </head>
+
+  <body>
+    <Header />
+
+    <main class="article-page-container">
+      
+      <!-- NAVIGASI BREADCRUMB -->
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <a href="/">Beranda</a>
+        <span class="crumb-separator">/</span>
+        <a href="/blog/">Blog &amp; Edukasi</a>
+        <span class="crumb-separator">/</span>
+        <span class="crumb-current">{category}</span>
+      </nav>
+
+      <!-- ARTIKEL UTAMA & SIDEBAR WRAPPER -->
+      <div class="article-layout-grid">
+        
+        <!-- BAGIAN KONTEN ARTIKEL -->
+        <article class="main-article-content">
+          <header class="article-header">
+            <div class="category-meta-tag">{category}</div>
+            <h1 class="article-title">{title}</h1>
+            
+            <div class="article-meta-row">
+              <span class="meta-item">
+                <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+                  <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                </svg>
+                {publishDate}
+              </span>
+              <span class="meta-dot">•</span>
+              <span class="meta-item">
+                <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                </svg>
+                {readTime}
+              </span>
+              <span class="meta-dot">•</span>
+              <span class="meta-item">Ditulis oleh: Tim Bali Nusa Media</span>
+            </div>
+          </header>
+
+          <!-- FEATURED HERO IMAGE -->
+          {image && (
+            <div class="featured-img-wrap">
+              <img 
+                src={image} 
+                alt={title} 
+                loading="eager" 
+                width="840" 
+                height="450" 
+              />
+            </div>
+          )}
+
+          <!-- SLOT ISI KONTEN (MARKDOWN ATAU ASTRO CODE) -->
+          <div class="prose-content">
+            <slot />
+          </div>
+
+          <!-- KOTAK AUTHOR BIO -->
+          <footer class="article-footer-box">
+            <div class="author-badge">
+              <div class="author-avatar">BN</div>
+              <div class="author-text">
+                <strong>Redaksi Bali Nusa Media</strong>
+                <p>
+                  Praktisi web development, optimasi SEO lokal Bali, dan spesialis periklanan Google Search Ads &amp; Meta Ads untuk bisnis dan UMKM di Bali.
+                </p>
+              </div>
+            </div>
+          </footer>
+
+        </article>
+
+        <!-- SIDEBAR WIDGETS -->
+        <aside class="article-sidebar">
+          
+          <!-- WIDGET 1: CTA KONSULTASI CEPAT -->
+          <div class="sidebar-card cta-widget">
+            <span class="widget-tag">PROMO DIGITAL</span>
+            <h3>Ingin Bisnis Anda Muncul di Halaman 1 Google?</h3>
+            <p>
+              Konsultasikan pembuatan website kencang atau pengelolaan iklan Google &amp; Instagram tertarget bersama tim ahli kami.
+            </p>
+            <a 
+              href="https://wa.me/6285168981959?text=Halo%20Bali%20Nusa%20Media,%20saya%20tertarik%20konsultasi%20layanan%20setelah%20membaca%20artikel" 
+              class="btn-sidebar-wa" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              Konsultasi via WhatsApp &rarr;
+            </a>
+          </div>
+
+          <!-- WIDGET 2: LAYANAN UNGGULAN KAMI -->
+          <div class="sidebar-card">
+            <h4>Layanan Terkait</h4>
+            <ul class="sidebar-service-list">
+              <li><a href="/website/">Pembuatan Website Bisnis &rarr;</a></li>
+              <li><a href="/#paket">Website Booking Vila &rarr;</a></li>
+              <li><a href="/#paket">Jasa Pasang Google Search Ads &rarr;</a></li>
+              <li><a href="/#paket">Manajemen Meta Ads (IG &amp; FB) &rarr;</a></li>
+            </ul>
+          </div>
+
+          <!-- WIDGET 3: SISTER BRAND LAPANGAN -->
+          <div class="sidebar-card sister-widget">
+            <span class="sister-icon">⚡</span>
+            <div>
+              <strong>Butuh Teknisi Lapangan?</strong>
+              <p>Instalasi WiFi, CCTV online, dan kelistrikan di Bali oleh <a href="https://balinusateknik.com" target="_blank" rel="noopener noreferrer">Bali Nusa Teknik</a>.</p>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<style>
+  /* Base Layout */
+  .article-page-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem 4.5rem;
+    font-family: inherit;
+    color: #1e293b;
+  }
+
+  /* Breadcrumbs */
+  .breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.825rem;
+    color: #64748b;
+    margin-bottom: 2rem;
+  }
+
+  .breadcrumb-nav a {
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .breadcrumb-nav a:hover {
+    color: #0284c7;
+  }
+
+  .crumb-separator {
+    color: #cbd5e1;
+  }
+
+  .crumb-current {
+    color: #0284c7;
+    font-weight: 600;
+  }
+
+  /* Layout Grid: Konten Utama & Sidebar */
+  .article-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* Header Artikel */
+  .article-header {
+    margin-bottom: 2rem;
+  }
+
+  .category-meta-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #0284c7;
+    background: #e0f2fe;
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+
+  .article-title {
+    font-size: clamp(1.85rem, 3.8vw, 2.6rem);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.25;
+    margin-bottom: 1.15rem;
+    letter-spacing: -0.02em;
+  }
+
+  .article-meta-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    font-size: 0.85rem;
+    color: #64748b;
+  }
+
+  .meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .meta-dot {
+    color: #cbd5e1;
+  }
+
+  /* Featured Image */
+  .featured-img-wrap {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+    background: #f1f5f9;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.07);
+  }
+
+  .featured-img-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* Tipografi Isi Konten (Prose) */
+  .prose-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #334155;
+  }
+
+  .prose-content :global(h2) {
+    font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+    font-weight: 800;
+    color: #0f172a;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .prose-content :global(h3) {
+    font-size: clamp(1.2rem, 2vw, 1.45rem);
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.35;
+  }
+
+  .prose-content :global(p) {
+    margin-bottom: 1.5rem;
+  }
+
+  .prose-content :global(ul),
+  .prose-content :global(ol) {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-content :global(blockquote) {
+    border-left: 4px solid #0284c7;
+    background: #f8fafc;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0 10px 10px 0;
+    font-style: italic;
+    color: #1e293b;
+    margin: 2rem 0;
+  }
+
+  .prose-content :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 2rem 0;
+    display: block;
+  }
+
+  .prose-content :global(a) {
+    color: #0284c7;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 600;
+  }
+
+  /* Author Box */
+  .article-footer-box {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .author-badge {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .author-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #0284c7;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 1.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .author-text strong {
+    font-size: 1rem;
+    color: #0f172a;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .author-text p {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Sidebar */
+  .article-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    position: sticky;
+    top: 5rem;
+  }
+
+  .sidebar-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 1.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+  }
+
+  .cta-widget {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #ffffff;
+    border: none;
+  }
+
+  .widget-tag {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.15);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0.85rem;
+  }
+
+  .cta-widget h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 0.65rem;
+    line-height: 1.35;
+  }
+
+  .cta-widget p {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    margin-bottom: 1.25rem;
+    line-height: 1.55;
+  }
+
+  .btn-sidebar-wa {
+    display: block;
+    text-align: center;
+    background: #0284c7;
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 0.875rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .btn-sidebar-wa:hover {
+    background: #0369a1;
+  }
+
+  .sidebar-card h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-service-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .sidebar-service-list a {
+    color: #475569;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+  }
+
+  .sidebar-service-list a:hover {
+    color: #0284c7;
+    transform: translateX(3px);
+  }
+
+  .sister-widget {
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 1.25rem;
+  }
+
+  .sister-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .sister-widget strong {
+    font-size: 0.875rem;
+    color: #0f172a;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .sister-widget p {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .sister-widget a {
+    color: #0284c7;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  /* Responsive Rules */
+  @media (max-width: 960px) {
+    .article-layout-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .article-sidebar {
+      position: static;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .author-badge {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.85rem;
+    }
+
+    .article-page-container {
+      padding: 1.25rem 1rem 3.5rem;
+    }
+  }
+</style>

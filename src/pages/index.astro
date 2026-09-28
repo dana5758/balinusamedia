@@ -1,234 +1,1496 @@
 ---
+// src/pages/index.astro (balinusamedia.com)
 import MainLayout from "../layouts/MainLayout.astro";
+
+// 1. Data Paket Website & Iklan Digital (Lengkap dengan Slug, Gambar, Harga & Harga Coret)
+const digitalPackages = [
+  {
+    nama_paket: "Landing Page Profesional",
+    slug: "landing-page",
+    kategori: "Website",
+    harga: "Rp 750.000",
+    harga_coret: "Rp 1.000.000",
+    gambar: "/assets/img/hero.webp",
+    deskripsi: "Cocok untuk promosi produk tunggal, event, atau iklan digital. (Belum termasuk biaya perpanjangan domain/hosting)",
+    spesifikasi: "1 Halaman penuh, desain responsif, integrasi WhatsApp",
+    unggulan: "Cepat jadi & konversi tinggi",
+    whatsapp: "6285168981959"
+  },
+  {
+    nama_paket: "Company Profile",
+    slug: "company-profile",
+    kategori: "Website",
+    harga: "Rp 1.500.000",
+    harga_coret: "Rp 2.000.000",
+    gambar: "/assets/img/hero.webp",
+    deskripsi: "Tampilkan kredibilitas bisnis atau instansi Anda secara online. (Belum termasuk biaya perpanjangan domain/hosting)",
+    spesifikasi: "Halaman Beranda, Tentang Kami, Layanan, Kontak",
+    unggulan: "Desain profesional dan elegan",
+    whatsapp: "6285168981959"
+  },
+  {
+    nama_paket: "Website + SEO Optimal",
+    slug: "website-seo",
+    kategori: "Website",
+    harga: "Rp 2.500.000",
+    harga_coret: "Rp 3.200.000",
+    gambar: "/assets/img/hero.webp",
+    deskripsi: "Website siap tembus halaman utama Google untuk wilayah Bali. (Belum termasuk biaya perpanjangan domain/hosting)",
+    spesifikasi: "Struktur SEO on-page, optimasi kecepatan, riset keyword lokal",
+    unggulan: "Meningkatkan pengunjung organik",
+    whatsapp: "6285168981959"
+  },
+  {
+    nama_paket: "Website Booking / Reservasi",
+    slug: "website-booking",
+    kategori: "Website",
+    harga: "Rp 3.000.000",
+    harga_coret: "Rp 3.800.000",
+    gambar: "/assets/img/hero.webp",
+    deskripsi: "Sistem pemesanan online otomatis untuk hotel, sewa mobil, atau jasa. (Belum termasuk biaya perpanjangan domain/hosting)",
+    spesifikasi: "Fitur kalender, formulir booking terintegrasi WhatsApp",
+    unggulan: "Otomatisasi pemesanan 24 jam",
+    whatsapp: "6285168981959"
+  },
+  {
+    nama_paket: "Toko Online (E-Commerce)",
+    slug: "toko-online",
+    kategori: "Website",
+    harga: "Rp 3.500.000",
+    harga_coret: "Rp 4.500.000",
+    gambar: "/assets/img/hero.webp",
+    deskripsi: "Jual ratusan produk dengan sistem keranjang belanja mandiri. (Belum termasuk biaya perpanjangan domain/hosting)",
+    spesifikasi: "Manajemen produk, keranjang, kalkulasi ongkir otomatis",
+    unggulan: "Fitur lengkap siap jualan",
+    whatsapp: "6285168981959"
+  },
+  {
+    nama_paket: "Manajemen Google Search Ads",
+    slug: "jasa-iklan-google-search-ads",
+    kategori: "Google Ads",
+    harga: "Rp 850.000",
+    harga_coret: "Rp 1.200.000",
+    gambar: "/assets/img/google-ads.png",
+    deskripsi: "Menampilkan bisnis Anda di peringkat teratas pencarian Google saat calon pelanggan membutuhkan jasa/produk Anda secara mendesak.",
+    spesifikasi: "Riset keyword high-intent, filter kata negatif, geotargeting Bali, tracking klik WhatsApp",
+    unggulan: "Mendatangkan calon pelanggan instan siap beli",
+    whatsapp: "6285168981959"
+  },
+  {
+    nama_paket: "Manajemen Meta Ads (Instagram & FB)",
+    slug: "jasa-iklan-meta-ads-instagram-facebook",
+    kategori: "Meta Ads",
+    harga: "Rp 950.000",
+    harga_coret: "Rp 1.350.000",
+    gambar: "/assets/img/meta-ads.png",
+    deskripsi: "Membangun awareness dan menjangkau ribuan wisatawan domestik, expat, dan warga lokal Bali melalui feed & reels Instagram.",
+    spesifikasi: "Setup Pixel & Event Tracking, copywriting memikat, target minat/usia/lokasi, retargeting",
+    unggulan: "Sangat efektif untuk villa, kuliner kafe, & kerajinan",
+    whatsapp: "6285168981959"
+  }
+];
+
+// 2. Data Portofolio Riil
+const portfolioProjects = [
+  {
+    nama: "Dana Cepat BPKB",
+    kategori: "Fintech & Multi-Finance",
+    deskripsi: "Landing page kampanye Google Ads nasional dengan kecepatan buka instan di bawah 1 detik dan konversi leads tinggi.",
+    gambar: "/assets/img/portofolio/danacepatbpkb.png",
+    link: "https://bpkbku.com"
+  },
+  {
+    nama: "Dana Jaya Motor",
+    kategori: "Otomotif & Showroom Bali",
+    deskripsi: "Website katalog kendaraan roda dua dan pembiayaan terintegrasi langsung ke admin WhatsApp showroom.",
+    gambar: "/assets/img/portofolio/danajayamotor.png",
+    link: "#"
+  },
+  {
+    nama: "Explore Bali Tour & Travel",
+    kategori: "Pariwisata & Transportasi",
+    deskripsi: "Situs paket tour pulau Bali yang dirancang ramah turis dengan On-Page SEO terstruktur untuk kata kunci wisata lokal.",
+    gambar: "/assets/img/portofolio/explorebalitour.png",
+    link: "#"
+  },
+  {
+    nama: "Padi & Spice Cooking Class",
+    kategori: "Kuliner & Workshop Sidemen",
+    deskripsi: "Website pengalaman culinary workshop di Sidemen, Bali, untuk menarik wisatawan mancanegara dengan fitur direct booking.",
+    gambar: "/assets/img/portofolio/padiandspice.png",
+    link: "https://sidemenbalicooking.com"
+  },
+  {
+    nama: "Sidemen Trekking Bali",
+    kategori: "Eco-Tourism & Hiking",
+    deskripsi: "Situs hiking tour persawahan Sidemen dengan desain minimalis, mobile-first, dan integrasi ulasan Google Maps.",
+    gambar: "/assets/img/hero.webp",
+    link: "https://sidementrekkingbali.com"
+  },
+  {
+    nama: "Sidemen Silver Studio",
+    kategori: "Artisan Craft & Workshop",
+    deskripsi: "Website kelas pembuatan perhiasan perak di Bali dengan integrasi kampanye Google Search Ads bertarget turis asing.",
+    gambar: "/assets/img/hero.webp",
+    link: "#"
+  }
+];
+
+// 3. Matriks Kata Kunci Layanan SEO Lokal di Seluruh Kabupaten Bali
+const localKeywordMatrix = [
+  {
+    kabupaten: "Denpasar",
+    keywords: ["Jasa Pembuatan Website Denpasar", "Jasa Pasang Google Ads Denpasar", "Jasa Iklan Instagram Denpasar", "Web Developer Denpasar"]
+  },
+  {
+    kabupaten: "Badung (Kuta, Canggu, Seminyak, Jimbaran)",
+    keywords: ["Jasa Website Villa Canggu", "Google Ads Tour Kuta", "Jasa Pembuatan Web Seminyak", "Meta Ads Restoran Badung"]
+  },
+  {
+    kabupaten: "Gianyar (Ubud, Sukawati)",
+    keywords: ["Jasa Website Ubud Bali", "Jasa Iklan Wisata Ubud", "Pembuatan Web Kerajinan Gianyar", "SEO Lokal Bisnis Ubud"]
+  },
+  {
+    kabupaten: "Karangasem (Amlapura, Candidasa, Amed)",
+    keywords: ["Jasa Bikin Website Karangasem", "Jasa Google Ads Amlapura", "Website Diving Amed", "Jasa Website Villa Candidasa"]
+  },
+  {
+    kabupaten: "Tabanan",
+    keywords: ["Jasa Website UMKM Tabanan", "Pembuatan Landing Page Tabanan", "Jasa Iklan Online Tabanan", "Digital Marketing Tabanan"]
+  },
+  {
+    kabupaten: "Buleleng (Singaraja, Lovina)",
+    keywords: ["Jasa Website Singaraja", "Jasa Iklan Google Lovina", "Web Development Buleleng", "Jasa Promosi Wisata Buleleng"]
+  },
+  {
+    kabupaten: "Klungkung (Nusa Penida, Lembongan)",
+    keywords: ["Jasa Website Tour Nusa Penida", "Website Fastboat Klungkung", "Iklan Google Wisata Nusa Penida", "Web Villa Lembongan"]
+  },
+  {
+    kabupaten: "Bangli (Kintamani)",
+    keywords: ["Jasa Website Kafe Kintamani", "Iklan Instagram Glamping Kintamani", "Website Wisata Bangli", "SEO Bisnis Bangli"]
+  },
+  {
+    kabupaten: "Jembrana (Negara)",
+    keywords: ["Jasa Pembuatan Website Negara", "Digital Marketing Jembrana", "Website Usaha Ritel Jembrana", "Jasa Iklan Online Jembrana"]
+  }
+];
+
+// 4. Data FAQ SEO
+const faqList = [
+  {
+    q: "Berapa lama proses pembuatan website di Bali Nusa Media?",
+    a: "Untuk paket Landing Page siap iklan rata-rata selesai dalam 3 sampai 5 hari kerja. Untuk Website Company Profile, E-Commerce, atau Sistem Booking Villa memakan waktu 7 hingga 14 hari kerja setelah materi konten siap."
+  },
+  {
+    q: "Bagaimana cara kerja jasa iklan Google Ads dan Meta Ads?",
+    a: "Kami melakukan riset kata kunci niat beli tinggi (high-intent), membuat naskah copy iklan persuasif, mengatur geotargeting wilayah kota di Bali, menyetel pelacakan tombol WhatsApp, dan mengoptimalkan performa agar biaya per leads hemat."
+  },
+  {
+    q: "Apakah website yang dibuat dijamin muncul di Google?",
+    a: "Ya. Setiap website yang kami rancang sudah dilengkapi struktur On-Page SEO modern, schema markup LocalBusiness JSON-LD, sitemap XML, dan didaftarkan langsung ke Google Search Console agar cepat terindeks."
+  },
+  {
+    q: "Apakah melayani pembuatan website untuk seluruh kota di Bali?",
+    a: "Kami melayani seluruh 9 kabupaten/kota di Bali (Denpasar, Badung, Gianyar, Karangasem, Tabanan, Buleleng, Klungkung, Bangli, dan Jembrana) baik secara tatap muka langsung maupun virtual meeting."
+  }
+];
+
+// 5. Schema Markup JSON-LD Komprehensif
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "name": "PT. Bali Nusa Media - Jasa Pembuatan Website & Iklan Digital Bali",
+      "image": "https://balinusamedia.com/assets/img/hero.webp",
+      "telephone": "+6285168981959",
+      "priceRange": "Rp 750.000 - Rp 5.000.000",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Perum Grand Park Blok C No. 8, Subagan",
+        "addressLocality": "Karangasem",
+        "addressRegion": "Bali",
+        "addressCountry": "ID"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -8.4485,
+        "longitude": 115.6128
+      },
+      "url": "https://balinusamedia.com/",
+      "areaServed": [
+        { "@type": "City", "name": "Denpasar" },
+        { "@type": "AdministrativeArea", "name": "Badung" },
+        { "@type": "AdministrativeArea", "name": "Gianyar" },
+        { "@type": "AdministrativeArea", "name": "Karangasem" },
+        { "@type": "AdministrativeArea", "name": "Tabanan" },
+        { "@type": "AdministrativeArea", "name": "Buleleng" },
+        { "@type": "AdministrativeArea", "name": "Klungkung" },
+        { "@type": "AdministrativeArea", "name": "Bangli" },
+        { "@type": "AdministrativeArea", "name": "Jembrana" },
+        { "@type": "AdministrativeArea", "name": "Bali" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Layanan Web & Digital Ads",
+        "itemListElement": digitalPackages.map(pkg => ({
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": pkg.nama_paket,
+            "description": pkg.deskripsi,
+            "url": `https://balinusamedia.com/#${pkg.slug}`
+          }
+        }))
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqList.map(item => ({
+        "@type": "Question",
+        "name": item.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.a
+        }
+      }))
+    }
+  ]
+};
 ---
 
-<MainLayout>
+<MainLayout
+  title="Jasa Pembuatan Website & Iklan Google Ads, Meta Ads di Bali | Bali Nusa Media"
+  description="Agensi jasa pembuatan website cepat, optimasi SEO lokal Google, dan jasa pasang iklan Google Ads & Meta Ads profesional untuk bisnis, UMKM, dan vila di seluruh Bali."
+>
 
-    <main class="hub-container">
+  <!-- Schema Markup JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
 
-        <section class="hero-hub">
+  <main class="home-container">
 
-            <div class="hero-text">
+    <!-- 1. HERO SECTION -->
+    <section class="hero-section">
+      <div class="hero-text">
+        <div class="badge-pill">
+          <span class="dot-live"></span> AGENSI DIGITAL &amp; WEB DEVELOPER BALI
+        </div>
+        <h1>
+          Jasa Pembuatan Website &amp; Iklan Digital di Bali untuk Pertumbuhan Bisnis Anda
+        </h1>
+        <p class="hero-subtext">
+          <strong>Bali Nusa Media</strong> membangun website berperforma tinggi, ringan dibuka di smartphone, dan teroptimasi SEO lokal Google. Didukung manajemen iklan <strong>Google Search Ads &amp; Meta Ads</strong> yang tepat sasaran mendatangkan pembeli di seluruh kabupaten di Bali.
+        </p>
 
-                <p class="eyebrow">
-                    KARANGASEM, BALI
-                </p>
+        <div class="usp-row">
+          <div class="usp-item"><span>⚡</span> Skor Speed 95+ (Kencang)</div>
+          <div class="usp-item"><span>📍</span> Dominasi SEO Lokal Bali</div>
+          <div class="usp-item"><span>🎯</span> Iklan Langsung Chat WhatsApp</div>
+        </div>
 
-                <h1>
-                    Satu Vendor Komplit untuk
-                    <span>
-                        Infrastruktur & Digitalisasi
-                    </span>
-                    Bisnis Anda
-                </h1>
+        <div class="cta-action-row">
+          <a
+            href="https://wa.me/6285168981959?text=Halo%20Bali%20Nusa%20Media,%20saya%20mau%20konsultasi%20layanan%20website%20dan%20iklan"
+            class="btn-primary-wa"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Konsultasi Strategi Digital (WhatsApp)
+          </a>
+          <a href="#portofolio" class="btn-secondary-link">
+            Lihat Portofolio Proyek &darr;
+          </a>
+        </div>
+      </div>
 
-                <p>
-                    Bali Nusa Media menghadirkan layanan teknologi
-                    profesional untuk membantu rumah dan bisnis,
-                    mulai dari Internet & WiFi, sistem keamanan CCTV,
-                    hingga pembuatan website.
-                </p>
+      <div class="hero-visual">
+        <img
+          src="/assets/img/hero.webp"
+          alt="Jasa pembuatan website dan pasang iklan Google Ads Meta Ads Bali"
+          width="600"
+          height="400"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </section>
 
+    <!-- 2. PAKET LAYANAN WEBSITE & ADS -->
+    <section id="paket" class="packages-section">
+      <div class="section-title-wrap">
+        <span class="sub-heading">PILIHAN PAKET</span>
+        <h2>Paket Solusi Web Development &amp; Digital Ads</h2>
+        <p>Solusi terukur dan fleksibel sesuai tahap pertumbuhan bisnis Anda di Bali.</p>
+      </div>
+
+      <div class="packages-grid">
+        {digitalPackages.map((pkg) => (
+          <div class="pkg-card" id={pkg.slug}>
+            <div class="pkg-img-wrap">
+              <img 
+                src={pkg.gambar} 
+                alt={`${pkg.nama_paket} - Bali Nusa Media`} 
+                loading="lazy" 
+                width="400" 
+                height="210" 
+              />
+              <span class="pkg-category-badge">{pkg.kategori}</span>
             </div>
 
-
-            <div class="hero-image">
-
-                <img
-                    src="/assets/img/hero.webp"
-                    alt="Bali Nusa Media - Internet, CCTV dan Web Development"
-                    loading="eager"
-                >
-
+            <div class="pkg-body">
+              <h3 class="pkg-title">{pkg.nama_paket}</h3>
+              <p class="pkg-desc">{pkg.deskripsi}</p>
+              
+              <div class="pkg-middle">
+                <span class="list-label">Spesifikasi:</span>
+                <p class="pkg-spec-text">{pkg.spesifikasi}</p>
+              </div>
             </div>
 
-        </section>
+            <div class="pkg-bottom">
+              <p class="pkg-recom"><strong>Keunggulan:</strong> {pkg.unggulan}</p>
 
-
-        <section class="services-section">
-
-            <div class="section-title">
-
-                <p class="eyebrow">
-                    LAYANAN KAMI
-                </p>
-
-                <h2>
-                    Solusi Teknologi untuk Rumah & Bisnis
-                </h2>
-
-            </div>
-
-
-            <div class="grid-services">
-
-
-                <div class="card-service">
-
-                    <div class="card-image-wrapper">
-
-                        <img
-                            src="/assets/img/wifi/hero-jaringan-wifi.webp"
-                            alt="Layanan Internet dan WiFi Karangasem"
-                            loading="lazy"
-                        >
-
-                    </div>
-
-
-                    <div class="card-content">
-
-                        <h3>
-                            Internet & WiFi
-                        </h3>
-
-                        <p>
-                            Solusi jaringan internet dan WiFi
-                            untuk rumah, villa, restoran,
-                            kantor, toko, dan berbagai kebutuhan
-                            bisnis di Karangasem.
-                        </p>
-
-                    </div>
-                    <a href="/internet/" class="btn-card">
-                        Lihat Layanan
-                    </a>
-
+              <div class="pkg-footer-row">
+                <div class="price-box">
+                  <span class="price-val">{pkg.harga}</span>
+                  {pkg.harga_coret && <span class="price-old">{pkg.harga_coret}</span>}
                 </div>
-
-
-                <div class="card-service">
-
-                    <div class="card-image-wrapper">
-
-                        <img
-                            src="/assets/img/cctv/cctv-hero.webp"
-                            alt="Jasa CCTV Karangasem"
-                            loading="lazy"
-                        >
-
-                    </div>
-
-
-                    <div class="card-content">
-
-                        <h3>
-                            Sistem Keamanan CCTV
-                        </h3>
-
-                        <p>
-                            Instalasi CCTV profesional dengan
-                            akses pemantauan online untuk rumah,
-                            villa, kantor, toko, restoran,
-                            dan tempat usaha.
-                        </p>
-
-                    </div>
-
-
-                    <a
-                        href="/cctv/"
-                        class="btn-card"
-                    >
-                        Lihat Layanan
-                    </a>
-
-                </div>
-
-
-                <div class="card-service">
-
-                    <div class="card-image-wrapper">
-
-                        <img
-                            src="/assets/img/web-dev/web-karangasem.webp"
-                            alt="Web Development Karangasem"
-                            loading="lazy"
-                        >
-
-                    </div>
-
-
-                    <div class="card-content">
-
-                        <h3>
-                            Web Development
-                        </h3>
-
-                        <p>
-                            Pembuatan website profesional,
-                            cepat, responsif, dan SEO-friendly
-                            untuk bisnis, villa, UMKM,
-                            dan kebutuhan digital lainnya.
-                        </p>
-
-                    </div>
-
-
-                    <a
-                        href="/website/"
-                        class="btn-card"
-                    >
-                        Lihat Layanan
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <section class="local-section">
-
-            <div class="section-title">
-
-                <p class="eyebrow">
-                    BALI NUSA MEDIA
-                </p>
-
-                <h2>
-                    Partner Teknologi untuk Karangasem
-                </h2>
-
-                <p>
-                    Kami membantu masyarakat dan pelaku usaha
-                    di Karangasem mendapatkan solusi teknologi
-                    yang tepat, mulai dari konektivitas internet,
-                    keamanan CCTV, hingga pengembangan website.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <section class="cta-section">
-
-            <div class="cta-inner">
-
-                <h2>
-                    Butuh Internet, CCTV atau Website?
-                </h2>
-
-                <p>
-                    Konsultasikan kebutuhan teknologi Anda
-                    dengan Bali Nusa Media.
-                </p>
 
                 <a
-                    href="https://wa.me/6285168981959"
-                    class="btn-cta"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  href={`https://wa.me/${pkg.whatsapp}?text=Halo%20Bali%20Nusa%20Media,%20saya%20tertarik%20dengan%20paket%20${encodeURIComponent(pkg.nama_paket)}`}
+                  class="btn-pkg-wa"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                    Konsultasi via WhatsApp
+                  Pesan via WhatsApp &rarr;
                 </a>
-
+              </div>
             </div>
+          </div>
+        ))}
+      </div>
 
-        </section>
+      <!-- Sinergi Sister Brand (Infrastruktur Fisik) -->
+      <div class="sister-banner">
+        <div class="sister-icon">⚡</div>
+        <div class="sister-text">
+          <h4>Butuh Pemasangan CCTV, Jaringan Wi-Fi Vila, atau Kelistrikan Bangunan?</h4>
+          <p>
+            Untuk penanganan teknis fisik perangkat keras lapangan, kunjungi divisi teknis kami: <a href="https://balinusateknik.com" target="_blank" rel="noopener noreferrer">Bali Nusa Teknik</a>.
+          </p>
+        </div>
+      </div>
+    </section>
 
-    </main>
+    <!-- 3. SEKSI ALUR KERJA: BAYAR SETELAH DESAIN JADI -->
+    <section class="workflow-guarantee-section">
+      <div class="section-title-wrap">
+        <div class="guarantee-pill">
+          <span class="shield-icon">🛡️</span> GARANSI 100% TANPA RISIKO
+        </div>
+        <h2>Proses Pembuatan Website: Bayar Setelah Desain Jadi</h2>
+        <p>
+          Kami mengutamakan kepuasan Anda. Kami buatkan pratinjau desain website bisnis Anda terlebih dahulu. Jika cocok dan disetujui, baru lakukan pembayaran.
+        </p>
+      </div>
 
+      <div class="workflow-steps-grid">
+        <div class="workflow-card">
+          <div class="step-badge">Tahap 01</div>
+          <div class="workflow-icon">📋</div>
+          <h3>Konsultasi &amp; Pengumpulan Materi</h3>
+          <p>
+            Diskusikan jenis usaha, target pelanggan, referensi desain yang disukai, serta kirimkan materi dasar (nama usaha, logo, daftar layanan/produk, dan nomor WhatsApp).
+          </p>
+          <span class="step-footer-tag">Gratis Konsultasi</span>
+        </div>
+
+        <div class="workflow-card highlight-step">
+          <div class="step-badge step-active">Tahap 02</div>
+          <div class="workflow-icon">💻</div>
+          <h3>Pembuatan Demo &amp; Pratinjau Desain</h3>
+          <p>
+            Tim kami langsung memproses desain website live versi demo (responsif HP &amp; laptop). Anda dapat melihat dan mencoba navigasinya secara langsung tanpa membayar sepeser pun.
+          </p>
+          <span class="step-footer-tag">Tanpa Bayar di Awal</span>
+        </div>
+
+        <div class="workflow-card highlight-payment">
+          <div class="step-badge step-pay">Tahap 03</div>
+          <div class="workflow-icon">🤝</div>
+          <h3>Review, Revisi, &amp; Pembayaran</h3>
+          <p>
+            Jika ada bagian yang kurang pas, kami revisi hingga sesuai keinginan Anda. <strong>Setelah Anda benar-benar puas dengan hasil desainnya</strong>, baru lakukan pembayaran paket.
+          </p>
+          <span class="step-footer-tag tag-pay">Bayar Setelah Cocok</span>
+        </div>
+
+        <div class="workflow-card">
+          <div class="step-badge">Tahap 04</div>
+          <div class="workflow-icon">🚀</div>
+          <h3>Domain Resmi &amp; Penyerahan Web</h3>
+          <p>
+            Setelah pembayaran lunas, website langsung kami hubungkan ke domain resmi pilihan Anda (.com / .id), aktivasi SSL aman, didaftarkan ke Google Search Console, dan siap terima order!
+          </p>
+          <span class="step-footer-tag">Siap Dipromosikan</span>
+        </div>
+      </div>
+
+      <div class="risk-free-banner">
+        <div class="risk-free-content">
+          <h4>Tidak Cocok dengan Konsep Desain Kami?</h4>
+          <p>Anda bebas membatalkan tanpa denda atau ikatan apa pun. Anda 100% aman bertransaksi bersama Bali Nusa Media.</p>
+        </div>
+        <a
+          href="https://wa.me/6285168981959?text=Halo%20Bali%20Nusa%20Media,%20saya%20tertarik%20dengan%20program%20buat%20website%20bayar%20setelah%20desain%20jadi"
+          class="btn-cta-riskfree"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Mulai Buat Website Tanpa Risiko via WA &rarr;
+        </a>
+      </div>
+    </section>
+
+    <!-- 4. SEKSI TEKNOLOGI & CMS (TECH STACK) -->
+    <section class="tech-stack-section">
+      <div class="section-title-wrap">
+        <span class="sub-heading">TEKNOLOGI &amp; PLATFORM ANDAL</span>
+        <h2>Bahasa Pemrograman &amp; CMS yang Kami Gunakan</h2>
+        <p>
+          Kami memilih fondasi teknologi yang terbukti cepat, aman, ramah mesin pencari Google, dan mudah dikembangkan untuk jangka panjang.
+        </p>
+      </div>
+
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-icon-wrap">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
+              <path d="M8.358 20.162c-1.186-1.07-1.532-3.574-1.2-5.66.602-3.756 2.73-6.527 5.37-9.502.404-.455.776-.902 1.116-1.34.08-.102.158-.204.236-.307.037.073.07.147.1.22.428 1.05.65 2.18.66 3.326.02 2.378-.81 4.544-2.19 6.27-.41.514-.87.986-1.373 1.408-.503.422-1.045.787-1.616 1.085-.36.19-.73.34-1.103.5zm7.284-8.84c.78-1.57.94-3.41.44-5.11-.08-.27-.19-.53-.32-.78-.1-.19-.21-.37-.33-.55-.07.17-.14.34-.23.51-.83 1.63-2.14 3.03-3.66 4.04-.41.27-.84.51-1.28.71 1.25.1 2.45.49 3.5 1.18h.01c.64-.67 1.28-1.4 1.87-2.2zM2.85 19.3c.09-.16.19-.32.3-.47 1.7-2.3 4.2-3.7 6.9-4.2.2-.03.3-.06.5-.08-.6 1.4-1.4 2.6-2.5 3.5-.8.7-1.8 1.1-2.8 1.2-.8.1-1.6-.05-2.4-.4zM12 2C6.477 2 2 6.477 2 12c0 2.22.723 4.27 1.944 5.932A9.972 9.972 0 0 1 2 12c0-5.523 4.477-10 10-10s10 4.477 10 10a9.972 9.972 0 0 1-1.944 5.932C21.277 16.27 22 14.22 22 12c0-5.523-4.477-10-10-10z"/>
+            </svg>
+          </div>
+          <div class="tech-info">
+            <h3>Astro Framework</h3>
+            <span class="tech-badge">Ultra-Fast Static / SSG</span>
+            <p>Framework modern arsitektur "Zero-JS" penghasil skor PageSpeed 95-100 hijau untuk SEO maksimal.</p>
+          </div>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-icon-wrap laravel-color">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
+              <path d="M22.04 7.64l-9.3-5.37a1.44 1.44 0 0 0-1.48 0L1.96 7.64a1.48 1.48 0 0 0-.71 1.28v10.74a1.48 1.48 0 0 0 .71 1.28l9.3 5.37a1.44 1.44 0 0 0 1.48 0l9.3-5.37a1.48 1.48 0 0 0 .71-1.28V8.92a1.48 1.48 0 0 0-.71-1.28zM12 3.65l7.9 4.56-3.23 1.86L12 7.37 7.33 10.07 4.1 8.21 12 3.65zm-1 16.7L4.25 16.3V9.89l6.75 3.9v6.56zm2 0v-6.56l3.25-1.88v3.42l3.5-2.02v3.14L13 20.35z"/>
+            </svg>
+          </div>
+          <div class="tech-info">
+            <h3>Laravel PHP</h3>
+            <span class="tech-badge">Backend &amp; Web App</span>
+            <p>Framework backend tangguh berstandar industri untuk sistem reservasi vila, dashboard admin, dan katalog dinamis.</p>
+          </div>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-icon-wrap wp-color">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
+              <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18.06A8.06 8.06 0 0 1 3.94 12c0-.52.06-1.03.16-1.52l4.82 13.22a8.06 8.06 0 0 1-3.08-5.64zm6.46-11.83a2.3 2.3 0 0 0-2.1 1.46L13.8 17.2l-2.6-7.8a2 2 0 0 0-.17-.46 2.3 2.3 0 0 0-2.06-1.28H8.84a6.2 6.2 0 0 1 9.62 1.95zm-6.46 9.47L9.5 10.3h2.64l2.5 7.4zm5.83-1.63l-2.48-7.18c.67-.04 1.35-.15 1.35-.15a.73.73 0 0 0 0-1.46s-.94.11-1.92.11a14.7 14.7 0 0 0-2-.11.73.73 0 1 0 0 1.46s.66.11 1.3.15l-1.95 5.64-1.33-4c.54-.04 1.07-.15 1.07-.15a.73.73 0 0 0 0-1.46s-.94.11-1.93.11a15 15 0 0 0-2-.11.73.73 0 0 0 0 1.46s.67.11 1.32.15l3.6 10.5a8.08 8.08 0 0 1 4.34-4.96z"/>
+            </svg>
+          </div>
+          <div class="tech-info">
+            <h3>WordPress CMS</h3>
+            <span class="tech-badge">Mudah Kelola Konten</span>
+            <p>Pilihan tepat untuk klien yang ingin mengupdate artikel blog, promo menu restoran, atau galeri foto secara mandiri.</p>
+          </div>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-icon-wrap js-color">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
+              <path d="M3 3h18l-1.64 18.23L12 24l-7.36-2.77L3 3zm14.47 5.75H6.53l.35 4h10.24l-.45 4.96-4.67 1.25-4.67-1.25-.26-2.92H5.03l.48 5.48L12 21.75l6.49-1.48.98-11.52z"/>
+            </svg>
+          </div>
+          <div class="tech-info">
+            <h3>HTML5, CSS3 &amp; JS</h3>
+            <span class="tech-badge">Custom Vanilla Code</span>
+            <p>Kode bersih (*clean code*) tanpa bloated library. Ringan, cepat, dan tampil responsif di semua resolusi smartphone.</p>
+          </div>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-icon-wrap cloudflare-color">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
+              <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/>
+            </svg>
+          </div>
+          <div class="tech-info">
+            <h3>Cloudflare &amp; Git CI/CD</h3>
+            <span class="tech-badge">Global CDN &amp; Security</span>
+            <p>Jaminan website aman dari serangan hacker/DDoS, gratis SSL HTTPS, dan server cache edge terdistribusi dekat pengunjung.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PORTOFOLIO PROYEK NYATA -->
+    <section id="portofolio" class="portfolio-section">
+      <div class="section-title-wrap">
+        <span class="sub-heading">BUKTI KERJA NYATA</span>
+        <h2>Portofolio Proyek yang Pernah Kami Bangun</h2>
+        <p>Kombinasi karya website custom berkecepatan tinggi dan kampanye promosi digital di Bali.</p>
+      </div>
+
+      <div class="portfolio-grid">
+        {portfolioProjects.map((item) => (
+          <article class="portfolio-item-card">
+            <div class="portfolio-media">
+              <img 
+                src={item.gambar} 
+                alt={`Proyek ${item.nama} Bali Nusa Media`} 
+                loading="lazy" 
+                width="480" 
+                height="280" 
+              />
+            </div>
+            <div class="portfolio-content">
+              <span class="port-cat">{item.kategori}</span>
+              <h3 class="port-name">{item.nama}</h3>
+              <p class="port-desc">{item.deskripsi}</p>
+              {item.link !== "#" && (
+                <a href={item.link} target="_blank" rel="noopener noreferrer" class="port-link">
+                  Lihat Website Live &rarr;
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- 6. TARGET KATA KUNCI SEO LOKAL DI 9 KABUPATEN BALI -->
+    <section class="local-seo-section">
+      <div class="section-title-wrap">
+        <span class="sub-heading">JANGKAUAN REGIONAL</span>
+        <h2>Layanan Pembuatan Website &amp; Iklan di Seluruh Kabupaten Bali</h2>
+        <p>Kami hadir membantu ekspansi bisnis Anda dengan menargetkan kata kunci pencarian lokal di setiap daerah:</p>
+      </div>
+
+      <div class="keyword-matrix-grid">
+        {localKeywordMatrix.map((item) => (
+          <div class="matrix-card">
+            <h3 class="matrix-city">{item.kabupaten}</h3>
+            <ul class="matrix-kw-list">
+              {item.keywords.map(kw => (
+                <li><span class="kw-bullet">🔍</span> {kw}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 7. FAQ SECTION -->
+    <section class="faq-section">
+      <div class="section-title-wrap">
+        <span class="sub-heading">TANYA JAWAB</span>
+        <h2>Pertanyaan yang Sering Diajukan (FAQ)</h2>
+      </div>
+
+      <div class="faq-accordion-wrap">
+        {faqList.map((faq) => (
+          <details class="faq-item">
+            <summary class="faq-trigger">
+              <span>{faq.q}</span>
+              <span class="faq-chevron">+</span>
+            </summary>
+            <div class="faq-content">
+              <p>{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- 8. FINAL BANNER CTA -->
+    <section class="cta-banner">
+      <h2>Siap Mendominasi Halaman 1 Google dan Meningkatkan Penjualan?</h2>
+      <p>
+        Diskusikan kebutuhan website dan strategi iklan digital bisnis Anda bersama tim <strong>Bali Nusa Media</strong>. Kami siap membantu dari nol sampai website menghasilkan konversi.
+      </p>
+      <a
+        href="https://wa.me/6285168981959?text=Halo%20Bali%20Nusa%20Media,%20saya%20mau%20konsultasi%20layanan%20website%20dan%20iklan"
+        class="btn-cta-large"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Mulai Konsultasi Bisnis via WhatsApp Sekarang
+      </a>
+    </section>
+
+  </main>
 </MainLayout>
+
+<style>
+  /* Layout Root */
+  .home-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+    font-family: inherit;
+    color: #1e293b;
+  }
+
+  section {
+    padding: 3.5rem 0;
+  }
+
+  .section-title-wrap {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 2.75rem;
+  }
+
+  .sub-heading {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #0284c7;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title-wrap h2 {
+    font-size: clamp(1.65rem, 3.2vw, 2.25rem);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title-wrap p {
+    font-size: 1rem;
+    color: #64748b;
+    line-height: 1.55;
+  }
+
+  /* 1. Hero */
+  .hero-section {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2.5rem;
+    align-items: center;
+    padding: 2.5rem 0 3.5rem;
+  }
+
+  .badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #0284c7;
+    background: #e0f2fe;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    margin-bottom: 1.2rem;
+  }
+
+  .dot-live {
+    width: 6px;
+    height: 6px;
+    background-color: #0284c7;
+    border-radius: 50%;
+  }
+
+  .hero-text h1 {
+    font-size: clamp(1.9rem, 3.8vw, 2.75rem);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-subtext {
+    font-size: 1.05rem;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+  }
+
+  .usp-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .usp-item {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #334155;
+    background: #f1f5f9;
+    padding: 0.4rem 0.85rem;
+    border-radius: 6px;
+  }
+
+  .cta-action-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary-wa {
+    background-color: #0284c7;
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-primary-wa:hover {
+    background-color: #0369a1;
+  }
+
+  .btn-secondary-link {
+    background-color: #f1f5f9;
+    color: #334155 !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-secondary-link:hover {
+    background-color: #e2e8f0;
+  }
+
+  .hero-visual img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.12);
+    object-fit: cover;
+  }
+
+  /* 2. Paket */
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .pkg-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .pkg-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px -6px rgba(0, 0, 0, 0.09);
+  }
+
+  .pkg-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    background: #f1f5f9;
+    overflow: hidden;
+  }
+
+  .pkg-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .pkg-card:hover .pkg-img-wrap img {
+    transform: scale(1.04);
+  }
+
+  .pkg-category-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(4px);
+    color: #38bdf8;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.3rem 0.65rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .pkg-body {
+    padding: 1.35rem 1.5rem 0.5rem;
+    flex-grow: 1;
+  }
+
+  .pkg-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .pkg-desc {
+    font-size: 0.875rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 1.15rem;
+  }
+
+  .list-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .pkg-spec-text {
+    font-size: 0.85rem;
+    color: #334155;
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  .pkg-bottom {
+    padding: 1rem 1.5rem 1.5rem;
+    border-top: 1px solid #f1f5f9;
+  }
+
+  .pkg-recom {
+    font-size: 0.8rem;
+    color: #0284c7;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  .pkg-footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .price-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .price-val {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  .price-old {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    text-decoration: line-through;
+  }
+
+  .btn-pkg-wa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #0284c7;
+    color: #ffffff !important;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .btn-pkg-wa:hover {
+    background: #0369a1;
+  }
+
+  .sister-banner {
+    background: #f1f5f9;
+    border: 1px dashed #cbd5e1;
+    border-radius: 14px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .sister-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .sister-text h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.25rem;
+  }
+
+  .sister-text p {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .sister-text a {
+    color: #0284c7;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  /* 3. Seksi Alur Kerja Bayar Setelah Desain Jadi */
+  .workflow-guarantee-section {
+    background: #f8fafc;
+    border-radius: 24px;
+    padding: 3.75rem 2rem;
+    margin: 2rem 0;
+    border: 1px solid #e2e8f0;
+  }
+
+  .guarantee-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #059669;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .shield-icon {
+    font-size: 0.85rem;
+  }
+
+  .workflow-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .workflow-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .workflow-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.08);
+  }
+
+  .workflow-card.highlight-step {
+    border-color: #38bdf8;
+    background: #f0f9ff;
+  }
+
+  .workflow-card.highlight-payment {
+    border-color: #10b981;
+    background: #f0fdf4;
+  }
+
+  .step-badge {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #64748b;
+    background: #f1f5f9;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    display: inline-block;
+    width: fit-content;
+    margin-bottom: 1rem;
+  }
+
+  .step-active {
+    color: #0284c7;
+    background: #e0f2fe;
+  }
+
+  .step-pay {
+    color: #059669;
+    background: #d1fae5;
+  }
+
+  .workflow-icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .workflow-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.3;
+    margin-bottom: 0.65rem;
+  }
+
+  .workflow-card p {
+    font-size: 0.875rem;
+    color: #475569;
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+  }
+
+  .step-footer-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #0284c7;
+    background: #f1f5f9;
+    padding: 0.3rem 0.65rem;
+    border-radius: 6px;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .tag-pay {
+    color: #059669;
+    background: #d1fae5;
+  }
+
+  .risk-free-banner {
+    background: #0f172a;
+    color: #ffffff;
+    border-radius: 16px;
+    padding: 1.75rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .risk-free-content h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: #38bdf8;
+  }
+
+  .risk-free-content p {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    margin: 0;
+    max-width: 580px;
+    line-height: 1.5;
+  }
+
+  .btn-cta-riskfree {
+    background: #10b981;
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 0.875rem;
+    padding: 0.75rem 1.4rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .btn-cta-riskfree:hover {
+    background: #059669;
+    transform: translateY(-2px);
+  }
+
+  /* 4. Tech Stack */
+  .tech-stack-section {
+    padding: 3.5rem 0;
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .tech-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .tech-card:hover {
+    transform: translateY(-3px);
+    border-color: #38bdf8;
+    box-shadow: 0 12px 24px -4px rgba(2, 132, 199, 0.08);
+  }
+
+  .tech-icon-wrap {
+    width: 54px;
+    height: 54px;
+    border-radius: 12px;
+    background: #0f172a;
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  .tech-card:hover .tech-icon-wrap {
+    transform: scale(1.05);
+  }
+
+  .laravel-color {
+    background: rgba(255, 45, 32, 0.1);
+    color: #ff2d20;
+  }
+
+  .wp-color {
+    background: rgba(33, 117, 155, 0.1);
+    color: #21759b;
+  }
+
+  .js-color {
+    background: rgba(247, 223, 30, 0.15);
+    color: #eab308;
+  }
+
+  .cloudflare-color {
+    background: rgba(243, 128, 32, 0.1);
+    color: #f38020;
+  }
+
+  .tech-info {
+    flex-grow: 1;
+  }
+
+  .tech-info h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.25rem;
+    line-height: 1.25;
+  }
+
+  .tech-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #0284c7;
+    background: #e0f2fe;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    display: inline-block;
+    margin-bottom: 0.65rem;
+  }
+
+  .tech-info p {
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* 5. Portofolio */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .portfolio-item-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+  }
+
+  .portfolio-item-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .portfolio-media {
+    width: 100%;
+    height: 180px;
+    background: #e2e8f0;
+  }
+
+  .portfolio-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .portfolio-content {
+    padding: 1.25rem;
+  }
+
+  .port-cat {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #0284c7;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .port-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.4rem;
+  }
+
+  .port-desc {
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 0.85rem;
+  }
+
+  .port-link {
+    font-size: 0.825rem;
+    font-weight: 700;
+    color: #0284c7;
+    text-decoration: none;
+  }
+
+  .port-link:hover {
+    text-decoration: underline;
+  }
+
+  /* 6. Matriks Kata Kunci Lokal */
+  .local-seo-section {
+    background: #f8fafc;
+    border-radius: 20px;
+    padding: 3.5rem 2rem;
+  }
+
+  .keyword-matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .matrix-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+
+  .matrix-city {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.65rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  .matrix-kw-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: #475569;
+  }
+
+  .kw-bullet {
+    font-size: 0.75rem;
+    margin-right: 0.25rem;
+  }
+
+  /* 7. FAQ Accordion */
+  .faq-accordion-wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .faq-item {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .faq-trigger {
+    padding: 1.15rem 1.35rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #0f172a;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+  }
+
+  .faq-trigger::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-chevron {
+    font-size: 1.25rem;
+    color: #0284c7;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+  }
+
+  details[open] .faq-chevron {
+    transform: rotate(45deg);
+  }
+
+  .faq-content {
+    padding: 0 1.35rem 1.25rem;
+    font-size: 0.9rem;
+    color: #475569;
+    line-height: 1.55;
+  }
+
+  /* 8. Final Banner */
+  .cta-banner {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-radius: 18px;
+    padding: 3.5rem 2rem;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .cta-banner h2 {
+    font-size: clamp(1.6rem, 3.2vw, 2.25rem);
+    font-weight: 800;
+    margin-bottom: 0.85rem;
+  }
+
+  .cta-banner p {
+    font-size: 1.05rem;
+    color: #cbd5e1;
+    max-width: 640px;
+    margin: 0 auto 2rem;
+    line-height: 1.5;
+  }
+
+  .btn-cta-large {
+    background: #0284c7;
+    color: #ffffff !important;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.95rem 2rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s ease;
+  }
+
+  .btn-cta-large:hover {
+    background: #0369a1;
+  }
+
+  /* Responsive Rules */
+  @media (max-width: 860px) {
+    .workflow-guarantee-section {
+      padding: 2.5rem 1.25rem;
+    }
+
+    .risk-free-banner {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+    }
+
+    .btn-cta-riskfree {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 1.5rem 0 2rem;
+    }
+
+    section {
+      padding: 2.5rem 0;
+    }
+
+    .sister-banner {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .pkg-footer-row {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.85rem;
+    }
+
+    .btn-pkg-wa {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .tech-card {
+      padding: 1.25rem;
+      gap: 1rem;
+    }
+
+    .tech-icon-wrap {
+      width: 46px;
+      height: 46px;
+    }
+
+    .tech-icon-wrap svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+</style>

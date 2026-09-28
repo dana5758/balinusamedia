@@ -1,350 +1,625 @@
 ---
+// src/pages/kontak/index.astro (atau src/pages/kontak.astro)
 import MainLayout from "../../layouts/MainLayout.astro";
+
+const whatsappNumber = "6285168981959";
+const emailAddress = "balinusamedia@gmail.com";
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": "https://balinusamedia.com/kontak/#webpage",
+      "url": "https://balinusamedia.com/kontak/",
+      "name": "Kontak Bali Nusa Media | Layanan Teknologi & Pemasaran Digital Bali",
+      "description": "Hubungi tim teknisi dan digital marketing Bali Nusa Media untuk konsultasi WiFi, CCTV, kelistrikan, website, dan Google/Meta Ads di Karangasem dan seluruh Bali."
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "Bali Nusa Media",
+      "telephone": "+6285168981959",
+      "email": emailAddress,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Perum Grand Park Blok C No. 8, Subagan",
+        "addressLocality": "Karangasem",
+        "addressRegion": "Bali",
+        "addressCountry": "ID"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -8.4485,
+        "longitude": 115.6128
+      }
+    }
+  ]
+};
 ---
 
 <MainLayout
-    title="Kontak Bali Nusa Media | Internet, CCTV & Website Karangasem"
-    description="Hubungi Bali Nusa Media untuk kebutuhan Internet & WiFi, CCTV, dan Website di Karangasem, Bali."
+  title="Kontak Bali Nusa Media | Konsultasi WiFi, CCTV, Listrik, Website & Ads Bali"
+  description="Hubungi Bali Nusa Media untuk survei lokasi dan konsultasi teknis WiFi, CCTV, instalasi kelistrikan, pembuatan website, serta Google/Meta Ads di Karangasem dan seluruh Bali."
 >
 
-    <main class="hub-container service-page">
-
-        <!-- =====================================================
-             HERO KONTAK
-        ====================================================== -->
-
-        <section class="service-hero">
-
-            <div class="service-hero-text">
-
-                <p class="eyebrow">
-                    HUBUNGI KAMI
-                </p>
-
-                <h1>
-                    Mari Diskusikan
-                    Kebutuhan Teknologi Anda
-                </h1>
-
-                <p>
-                    Ceritakan kebutuhan Internet & WiFi,
-                    CCTV, atau Website Anda kepada
-                    Bali Nusa Media. Kami siap membantu
-                    mencari solusi yang sesuai.
-                </p>
-
-                <a
-                    href="https://wa.me/6285168981959"
-                    class="btn-cta"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Konsultasi via WhatsApp
-                </a>
-
-            </div>
-
-
-            <div class="service-hero-image">
-
-                <img
-                    src="/assets/img/hero.webp"
-                    alt="Hubungi Bali Nusa Media Karangasem"
-                >
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             INFORMASI KONTAK
-        ====================================================== -->
-
-        <section class="service-section">
-
-            <div class="section-title">
-
-                <p class="eyebrow">
-                    INFORMASI KONTAK
-                </p>
-
-                <h2>
-                    Bali Nusa Media
-                </h2>
-
-            </div>
-
-
-            <div class="service-grid-2">
-
-
-                <!-- WHATSAPP -->
-
-                <article class="service-info-card">
-
-                    <h3>
-                        WhatsApp
-                    </h3>
-
-                    <p>
-                        Hubungi kami melalui WhatsApp untuk
-                        konsultasi kebutuhan teknologi,
-                        permintaan informasi, atau diskusi
-                        pekerjaan.
-                    </p>
-
-                    <a
-                        href="https://wa.me/6285168981959"
-                        class="btn-card"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        +62 851-6898-1959
-                    </a>
-
-                </article>
-
-
-                <!-- EMAIL -->
-
-                <article class="service-info-card">
-
-                    <h3>
-                        Email
-                    </h3>
-
-                    <p>
-                        Untuk pertanyaan atau kebutuhan
-                        komunikasi melalui email, Anda
-                        dapat menghubungi alamat berikut.
-                    </p>
-
-                    <a
-                        href="mailto:balinusamedia@gmail.com"
-                        class="btn-card"
-                    >
-                        balinusamedia@gmail.com
-                    </a>
-
-                </article>
-
-
-                <!-- ALAMAT -->
-
-                <article class="service-info-card">
-
-                    <h3>
-                        Alamat
-                    </h3>
-
-                    <p>
-                        Perum Grand Park Bolok C No. 8,
-                        Subagan, Kecamatan Karangasem,
-                        Kabupaten Karangasem, Bali.
-                    </p>
-
-                </article>
-
-
-                <!-- WEBSITE -->
-
-                <article class="service-info-card">
-
-                    <h3>
-                        Website
-                    </h3>
-
-                    <p>
-                        Informasi mengenai layanan,
-                        portofolio, dan artikel Bali Nusa
-                        Media tersedia di website resmi kami.
-                    </p>
-
-                    <a
-                        href="/"
-                        class="btn-card"
-                    >
-                        balinusamedia.com
-                    </a>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             LAYANAN
-        ====================================================== -->
-
-        <section class="service-section service-section-soft">
-
-            <div class="section-title">
-
-                <p class="eyebrow">
-                    LAYANAN KAMI
-                </p>
-
-                <h2>
-                    Kebutuhan Apa yang Ingin Anda Konsultasikan?
-                </h2>
-
-            </div>
-
-
-            <div class="service-grid-3">
-
-                <article class="service-info-card">
-
-                    <h3>
-                        Internet & WiFi
-                    </h3>
-
-                    <p>
-                        Konsultasi pemasangan WiFi,
-                        jaringan rumah, kantor, villa,
-                        toko, restoran, dan bisnis.
-                    </p>
-
-                    <a
-                        href="/internet/"
-                        class="btn-card"
-                    >
-                        Lihat Internet & WiFi
-                    </a>
-
-                </article>
-
-
-                <article class="service-info-card">
-
-                    <h3>
-                        CCTV
-                    </h3>
-
-                    <p>
-                        Konsultasi kebutuhan kamera,
-                        pemasangan CCTV, monitoring,
-                        dan sistem keamanan.
-                    </p>
-
-                    <a
-                        href="/cctv/"
-                        class="btn-card"
-                    >
-                        Lihat CCTV
-                    </a>
-
-                </article>
-
-
-                <article class="service-info-card">
-
-                    <h3>
-                        Website
-                    </h3>
-
-                    <p>
-                        Konsultasi pembuatan website
-                        perusahaan, UMKM, villa,
-                        dan bisnis.
-                    </p>
-
-                    <a
-                        href="/website/"
-                        class="btn-card"
-                    >
-                        Lihat Website
-                    </a>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             AREA LAYANAN
-        ====================================================== -->
-
-        <section class="service-section">
-
-            <div class="section-title">
-
-                <p class="eyebrow">
-                    AREA LAYANAN
-                </p>
-
-                <h2>
-                    Karangasem dan Sekitarnya
-                </h2>
-
-                <p>
-                    Hubungi kami untuk mengetahui ketersediaan
-                    layanan sesuai lokasi dan kebutuhan Anda.
-                </p>
-
-            </div>
-
-
-            <div class="service-grid-3">
-
-                <article class="service-info-card">
-                    <h3>Karangasem</h3>
-                    <p>
-                        Area utama layanan Bali Nusa Media.
-                    </p>
-                </article>
-
-                <article class="service-info-card">
-                    <h3>Amlapura</h3>
-                    <p>
-                        Internet, CCTV, dan Website.
-                    </p>
-                </article>
-
-                <article class="service-info-card">
-                    <h3>Wilayah Sekitarnya</h3>
-                    <p>
-                        Konsultasikan kebutuhan dan lokasi
-                        Anda kepada kami.
-                    </p>
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             CTA
-        ====================================================== -->
-
-        <section class="cta-section">
-
-            <h2>
-                Siap Membahas Kebutuhan Anda?
-            </h2>
-
-            <p>
-                Hubungi Bali Nusa Media melalui WhatsApp
-                dan ceritakan kebutuhan teknologi Anda.
-            </p>
-
-            <a
-                href="https://wa.me/6285168981959"
-                class="btn-cta"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Hubungi via WhatsApp
-            </a>
-
-        </section>
-
-    </main>
-
+  <!-- Schema Markup JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+
+  <main class="contact-page-container">
+
+    <!-- 1. HERO SECTION -->
+    <section class="service-hero">
+      <div class="service-hero-text">
+        <div class="eyebrow-pill">
+          <span class="dot-active"></span> HUBUNGI KAMI SEKARANG
+        </div>
+        <h1>
+          Mari Diskusikan Solusi Teknologi &amp; Digital untuk Bisnis Anda
+        </h1>
+        <p class="hero-desc">
+          Ada kendala WiFi sering putus? Butuh pasang kamera CCTV pantau lewat HP, perapian kabel panel listrik, pembuatan website baru, atau optimasi iklan Google &amp; Instagram? Tim <strong>Bali Nusa Media</strong> siap membantu Anda.
+        </p>
+
+        <div class="hero-cta-group">
+          <a
+            href={`https://wa.me/${whatsappNumber}?text=Halo%20Bali%20Nusa%20Media,%20saya%20mau%20konsultasi%20layanan`}
+            class="btn-primary-wa"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Chat Langsung via WhatsApp
+          </a>
+          <a href="#info-kontak" class="btn-secondary-action">
+            Lihat Detail Kontak
+          </a>
+        </div>
+      </div>
+
+      <div class="service-hero-image">
+        <img
+          src="/assets/img/hero.webp"
+          alt="Hubungi Bali Nusa Media Karangasem Bali"
+          width="600"
+          height="400"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </section>
+
+    <!-- 2. KARTU INFORMASI KONTAK RESMI -->
+    <section id="info-kontak" class="contact-section">
+      <div class="section-heading">
+        <span class="sub-label">SALURAN KOMUNIKASI</span>
+        <h2>Kontak Resmi Bali Nusa Media</h2>
+        <p>Silakan hubungi kami melalui saluran berikut untuk respon cepat dari tim teknis.</p>
+      </div>
+
+      <div class="contact-grid-4">
+        <!-- WHATSAPP -->
+        <article class="contact-card">
+          <div class="contact-card-icon">💬</div>
+          <h3>WhatsApp Fast Response</h3>
+          <p>Respons tercepat untuk konsultasi teknis, pertanyaan paket, dan penjadwalan survei lokasi.</p>
+          <a
+            href={`https://wa.me/${whatsappNumber}?text=Halo%20Bali%20Nusa%20Media,%20saya%20ingin%20berkonsultasi`}
+            class="contact-card-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            +62 851-6898-1959 &rarr;
+          </a>
+        </article>
+
+        <!-- EMAIL -->
+        <article class="contact-card">
+          <div class="contact-card-icon">✉️</div>
+          <h3>Email Resmi</h3>
+          <p>Kirimkan berkas penawaran, dokumen kerja sama, atau rincian spesifikasi proyek formal.</p>
+          <a href={`mailto:${emailAddress}`} class="contact-card-btn">
+            {emailAddress} &rarr;
+          </a>
+        </article>
+
+        <!-- ALAMAT -->
+        <article class="contact-card">
+          <div class="contact-card-icon">📍</div>
+          <h3>Kantor Operasional</h3>
+          <p>Perum Grand Park Blok C No. 8, Subagan, Kec. Karangasem, Kab. Karangasem, Bali.</p>
+          <span class="contact-tag">Basis Karangasem</span>
+        </article>
+
+        <!-- JAM KERJA -->
+        <article class="contact-card">
+          <div class="contact-card-icon">⏰</div>
+          <h3>Jam Pelayanan</h3>
+          <p>Senin – Sabtu: 08.00 – 18.00 WITA.<br/>Layanan darurat &amp; pesan WhatsApp tetap kami respon berkala.</p>
+          <span class="contact-tag-green">Siap Survei Lapangan</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. TEMPLATE KONSULTASI INSTAN BERDASARKAN KEBUTUHAN -->
+    <section class="contact-section options-box">
+      <div class="section-heading">
+        <span class="sub-label">KONSULTASI SPESIFIK</span>
+        <h2>Pilih Kebutuhan Layanan Anda</h2>
+        <p>Klik salah satu layanan di bawah untuk terhubung langsung dengan pesan WhatsApp otomatis.</p>
+      </div>
+
+      <div class="quick-inquiry-grid">
+        <!-- WiFi -->
+        <div class="inquiry-item">
+          <div class="inquiry-icon">📶</div>
+          <h4>WiFi &amp; Jaringan LAN</h4>
+          <p>Atasi sinyal lemot, pasang Access Point plafon vila, dan setting MikroTik voucher indekos.</p>
+          <a
+            href={`https://wa.me/${whatsappNumber}?text=Halo%20Bali%20Nusa%20Media,%20saya%20mau%20konsultasi%20pemasangan%20WiFi%20atau%20setting%20jaringan`}
+            class="inquiry-wa-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Konsultasi WiFi &rarr;
+          </a>
+        </div>
+
+        <!-- CCTV -->
+        <div class="inquiry-item">
+          <div class="inquiry-icon">📷</div>
+          <h4>Kamera CCTV</h4>
+          <p>Instalasi kamera ColorVu malam hari, setting pantau via smartphone, dan jalur pipa konduit rapi.</p>
+          <a
+            href={`https://wa.me/${whatsappNumber}?text=Halo%20Bali%20Nusa%20Media,%20saya%20mau%20konsultasi%20pemasangan%20kamera%20CCTV`}
+            class="inquiry-wa-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Konsultasi CCTV &rarr;
+          </a>
+        </div>
+
+        <!-- LISTRIK -->
+        <div class="inquiry-item">
+          <div class="inquiry-icon">⚡</div>
+          <h4>Instalasi Listrik &amp; Panel</h4>
+          <p>Perapian kabel boks MCB, sub-meter listrik kos, dan instalasi grounding proteksi petir.</p>
+          <a
+            href={`https://wa.me/${whatsappNumber}?text=Halo%20Bali%20Nusa%20Media,%20saya%20mau%20konsultasi%20instalasi%20atau%20perapian%20listrik`}
+            class="inquiry-wa-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Konsultasi Listrik &rarr;
+          </a>
+        </div>
+
+        <!-- WEBSITE -->
+        <div class="inquiry-item">
+          <div class="inquiry-icon">💻</div>
+          <h4>Pembuatan Website</h4>
+          <p>Landing page cepat, profil bisnis, dan website reservasi vila siap bersaing di halaman Google.</p>
+          <a
+            href={`https://wa.me/${whatsappNumber}?text=Halo%20Bali%20Nusa%20Media,%20saya%20mau%20konsultasi%20pembuatan%20website%20bisnis`}
+            class="inquiry-wa-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Konsultasi Website &rarr;
+          </a>
+        </div>
+
+        <!-- DIGITAL ADS -->
+        <div class="inquiry-item">
+          <div class="inquiry-icon">🎯</div>
+          <h4>Google &amp; Meta Ads</h4>
+          <p>Iklan digital tertarget untuk mendatangkan pelanggan langsung ke kontak WhatsApp Anda.</p>
+          <a
+            href={`https://wa.me/${whatsappNumber}?text=Halo%20Bali%20Nusa%20Media,%20saya%20mau%20konsultasi%20pasang%20iklan%20Google%20atau%20Meta%20Ads`}
+            class="inquiry-wa-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Konsultasi Iklan &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. WILAYAH OPERASIONAL / JANGKAUAN SURVEI -->
+    <section class="contact-section coverage-box">
+      <div class="section-heading">
+        <span class="sub-label">JANGKAUAN SURVEI</span>
+        <h2>Wilayah Kunjungan Lapangan di Bali</h2>
+        <p>
+          Teknisi kami siap datang langsung untuk survei jalur, pengukuran sinyal, dan instalasi fisik ke lokasi properti Anda.
+        </p>
+      </div>
+
+      <div class="coverage-grid">
+        <div class="coverage-item">
+          <h3>Area Utama (Karangasem &amp; Sekitarnya):</h3>
+          <p>
+            Amlapura, Candidasa, Amed, Tulamben, Padangbai, Manggis, Abang, Bebandem, Rendang, Selat, Kubu, dan Sidemen.
+          </p>
+        </div>
+        <div class="coverage-item">
+          <h3>Layanan Seluruh Kabupaten di Bali:</h3>
+          <p>
+            Denpasar, Badung (Kuta, Seminyak, Canggu), Gianyar (Ubud), Klungkung, Bangli, Tabanan, Buleleng (Singaraja), dan Jembrana.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. FINAL CTA BANNER -->
+    <section class="contact-cta-banner">
+      <h2>Siap Menjadwalkan Survei atau Memulai Proyek?</h2>
+      <p>
+        Ceritakan denah lokasi dan kebutuhan properti Anda. Tim <strong>Bali Nusa Media</strong> siap memberikan solusi yang tepat, rapi, dan transparan.
+      </p>
+      <a
+        href={`https://wa.me/${whatsappNumber}?text=Halo%20Bali%20Nusa%20Media,%20saya%20mau%20jadwalkan%20survei%20lokasi`}
+        class="btn-cta-large"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Jadwalkan Survei via WhatsApp
+      </a>
+    </section>
+
+  </main>
 </MainLayout>
+
+<style>
+  /* Layout Dasar */
+  .contact-page-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+    font-family: inherit;
+    color: #1e293b;
+  }
+
+  .contact-section {
+    padding: 3.5rem 0;
+  }
+
+  .section-heading {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .sub-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #0284c7;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(1.6rem, 3vw, 2.15rem);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-heading p {
+    font-size: 1rem;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  /* 1. Hero Section */
+  .service-hero {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2.5rem;
+    align-items: center;
+    padding: 2.5rem 0 3.5rem;
+  }
+
+  .eyebrow-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #0284c7;
+    background: #e0f2fe;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+  }
+
+  .dot-active {
+    width: 6px;
+    height: 6px;
+    background-color: #0284c7;
+    border-radius: 50%;
+  }
+
+  .service-hero-text h1 {
+    font-size: clamp(1.85rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary-wa {
+    background-color: #0284c7;
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-primary-wa:hover {
+    background-color: #0369a1;
+  }
+
+  .btn-secondary-action {
+    background-color: #f1f5f9;
+    color: #334155 !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-secondary-action:hover {
+    background-color: #e2e8f0;
+  }
+
+  .service-hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.12);
+    object-fit: cover;
+  }
+
+  /* 2. Contact Cards Grid */
+  .contact-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .contact-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+  }
+
+  .contact-card-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-card p {
+    font-size: 0.875rem;
+    color: #64748b;
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+  }
+
+  .contact-card-btn {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0284c7;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .contact-card-btn:hover {
+    color: #0369a1;
+    text-decoration: underline;
+  }
+
+  .contact-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #475569;
+    background: #f1f5f9;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    display: inline-block;
+    align-self: flex-start;
+  }
+
+  .contact-tag-green {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #047857;
+    background: #d1fae5;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    display: inline-block;
+    align-self: flex-start;
+  }
+
+  /* 3. Quick Inquiry Box */
+  .options-box {
+    background: #f8fafc;
+    border-radius: 20px;
+    padding: 3.5rem 1.75rem;
+  }
+
+  .quick-inquiry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .inquiry-item {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .inquiry-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08);
+  }
+
+  .inquiry-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .inquiry-item h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.4rem;
+  }
+
+  .inquiry-item p {
+    font-size: 0.825rem;
+    color: #64748b;
+    line-height: 1.45;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+  }
+
+  .inquiry-wa-btn {
+    font-size: 0.825rem;
+    font-weight: 700;
+    color: #0284c7;
+    text-decoration: none;
+  }
+
+  .inquiry-wa-btn:hover {
+    text-decoration: underline;
+  }
+
+  /* 4. Coverage Box */
+  .coverage-box {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 3rem 1.75rem;
+  }
+
+  .coverage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .coverage-item {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .coverage-item h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.4rem;
+  }
+
+  .coverage-item p {
+    font-size: 0.9rem;
+    color: #475569;
+    line-height: 1.5;
+  }
+
+  /* 5. Final CTA Banner */
+  .contact-cta-banner {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-radius: 18px;
+    padding: 3.5rem 2rem;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .contact-cta-banner h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    margin-bottom: 0.85rem;
+  }
+
+  .contact-cta-banner p {
+    font-size: 1.05rem;
+    color: #cbd5e1;
+    max-width: 620px;
+    margin: 0 auto 2rem;
+    line-height: 1.5;
+  }
+
+  .btn-cta-large {
+    background: #0284c7;
+    color: #ffffff !important;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.95rem 2rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s ease;
+  }
+
+  .btn-cta-large:hover {
+    background: #0369a1;
+  }
+
+  /* Responsive Rules */
+  @media (max-width: 768px) {
+    .service-hero {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 1.5rem 0 2rem;
+    }
+
+    .contact-section {
+      padding: 2.5rem 0;
+    }
+  }
+</style>
